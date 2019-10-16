@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head><meta name="generator" content="Hexo 3.8.0"><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+<meta name="theme-color" content="#f8f5ec">
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+<meta name="description" content="启动程序的几种方式"><meta name="keywords" content="program,life"><link rel="alternate" href="/atom.xml" title="网间砂"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.11.0">
+<link rel="canonical" href="https://sailhe.github.io/2019/06/01/Way-For-Startup-Program/">
+
+<link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css"><link rel="stylesheet" type="text/css" href="/lib/nprogress/nprogress.min.css">
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.11.0">
+
+<script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+<script>
+  window.config = {"leancloud":{"app_id":null,"app_key":null},"toc":true,"fancybox":true,"pjax":true,"latex":false};
+</script>
+
+    <title>Way-For-Startup-Program - 网间砂</title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">网间砂</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list"><a href="/">
+        <li class="mobile-menu-item">首页
+          </li>
+      </a><a href="/archives/">
+        <li class="mobile-menu-item">归档
+          </li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签
+          </li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类
+          </li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">关于
+          </li>
+      </a></ul>
+</nav>
+<div class="container background-transparent" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">网间砂</a>
+</div>
+
+<nav class="site-navbar"><ul id="menu" class="menu"><li class="menu-item">
+          <a class="menu-item-link" href="/">
+            首页
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            归档
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/tags/">
+            标签
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/categories/">
+            分类
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/about/">
+            关于
+            </a>
+        </li>
+      </ul></nav>
+</header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper transform-shadow">
+          <div id="content" class="content"><article class="post">
+    <header class="post-header">
+      <h1 class="post-title">Way-For-Startup-Program
+        </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2019-06-01
+        </span><span class="post-category">
+            <a href="/categories/Docs/">Docs</a>
+            </span>
+        </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#前导知识"><span class="toc-text">前导知识</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#程序的启动方式"><span class="toc-text">程序的启动方式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Win-r-启动常用程序"><span class="toc-text">Win+r 启动常用程序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#程序的部署"><span class="toc-text">程序的部署</span></a></li></ol></li></ol>
+    </div>
+  </div><div class="post-content"><p><strong>基于实践+总结性质-&gt;这些概念多半存在错误 请批判性对待</strong></p>
+<h1 id="前导知识"><a href="#前导知识" class="headerlink" title="前导知识"></a>前导知识</h1><ul>
+<li><a href="https://sailhe.github.io/2019/05/20/Confusing-Concept-In-Operating-System/">易混淆概念</a></li>
+<li>程序启动必定创建进程, 但启动一个程序不仅仅会创建进程</li>
+<li>程序运行需要与操作系统的内核进行交互, 而程序不能直接与之交互, 所以需要通过Shell(大部分用户程序都通过Shell运行)</li>
+<li>Shell: 是一种程序, 一般运行在终端中</li>
+<li>终端: 分为实体终端和虚拟终端, 计算机不是终端, 计算机中可以运行虚拟终端<blockquote>
+<p>{触摸板, ATM, POS机}都是[实体终端], 这三个终端中的Shell都不能更换<br>{VSCode的虚拟终端}属于虚拟终端(官方称<strong>集成integrated终端</strong>), 其Shell可以更换, 虚拟终端里面一般都含有一个用于处理用户输入的Shell实例, 终端只负责输入输出<br><strong>终端</strong>与<strong>Shell</strong>的关系有点类似于<strong>进程</strong>和<strong>程序</strong>的关系, 但不尽相同<br>这几者之间的关系{ 逻辑关系; 物理关系 }类似:</p>
+<ul>
+<li>电路-终端-内核-Shell-程序-进程</li>
+<li>神经-肉体-基因-思 维-方法-行为</li>
+<li>实体终端-器官 (某种意义上两者都没有<strong>独立存在</strong>的必要)<br>BTW: Ghost若存在则是独立于前述事物的, 类似于情感<br>正是由于这一层的存在, 使得人类与机器有别, 人类不能当成机器使用</li>
+</ul>
+</blockquote>
+</li>
+<li><a href="/2019/07/07/Environment">环境变量</a>: 实质上是一组字符串, 每个字符串代表一个路径, 添加环境变量后就可以不指明路径直接运行相应路径下的程序</li>
+<li>UI {GUI, CLI}, 用户界面, 一般只有这两种(比如盲人使用的基于声音的用户界面), 理论上这几种可以共存</li>
+</ul>
+<h1 id="程序的启动方式"><a href="#程序的启动方式" class="headerlink" title="程序的启动方式"></a>程序的启动方式</h1><ul>
+<li>GUI: 图形用户界面, 一般是双击 常见{ explorer; GNOME }</li>
+<li>CLI: 命令行用户界面, 一般输入路径然后回车即可 常见{ CMD; Powershell; Bash }<blockquote>
+<p>BTW, 有的程序只提供命令, 但不提供界面, 这种被称为<strong>脚手架</strong></p>
+</blockquote>
+</li>
+</ul>
+<h2 id="Win-r-启动常用程序"><a href="#Win-r-启动常用程序" class="headerlink" title="Win+r 启动常用程序"></a>Win+r 启动常用程序</h2><p>  <code>实际上是任务管理器的一部分 可以从任务管理器调出类似的窗口 这一点在Linux中有类似的由桌面程序提供的程序启动程序(即[运行]程序)</code></p>
+<blockquote>
+<p>Win+r是一组快捷键 用于启动<strong>程序运行程序</strong>貌似和资源浏览器有关, 但是杀死资源管理器进程后, 桌面变成了黑色, 可<strong>程序运行程序</strong>仍可以启动运行(桌面和资源管理器有关, …)<br>    cmd : 唤出命令提示符窗口<br>    gpedit.msc  : 组策略管理器<br>    regedit.exe : 注册表程序<br>    msconfig : 系统配置程序 此处可以选择启动方式{高级启动什么的}<br>    services.msc : 服务管理器 此处可禁用Windows update</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">path/ProgramName.suffix ## 这里涉及到相对路径和绝对路径, 请自行了解</span><br><span class="line">ShellName path/ProgramName.suffix ## 这是使用另一个shell启动该程序, 比如 python, node</span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># 上述语句说明你需要在合适的上下文启动你的[终端]并切换到合适的shell, 在cli中输入上述命令行</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># 选择合适的Shell: 可以查看代码块上方的提示, 此处的Sehll表示所有的Shell都适用(显然只指在CLI中)</span></span></span><br></pre></td></tr></table></figure>
+<p>对于一个jar格式的文件 HelloWorld.jar</p>
+<ul>
+<li>GUI</li>
+</ul>
+<ol>
+<li>双击</li>
+<li>选择使用jdk中的java打开, 不论该java程序有无GUI都会闪退(可能java依赖CLI的上下文)</li>
+</ol>
+<ul>
+<li>CLI<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -jar path/HelloWorld.jar # 表示在当前的CLI中使用shell运行java程序, 后边是参数</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<blockquote>
+<p>大多shell在运行程序结束后都是回到自身界面, 但前者没有界面一闪而过, 往往给用户一种不知所措的感觉, 故称[闪退]<br> 因此, 闪退一般表示发生了未捕获的异常或错误, 当出现此类情况时:</p>
+<ul>
+<li>GUI程序, 如果没有外部日志的话难以追查原因</li>
+<li>CLI程序, 运行结束后会在shell的缓冲区中保留运行过程中的结果</li>
+</ul>
+</blockquote>
+<h2 id="程序的部署"><a href="#程序的部署" class="headerlink" title="程序的部署"></a>程序的部署</h2><p><a href="https://zh.wikipedia.org/zh-hans/软件部署" target="_blank" rel="noopener">部署</a>: 简单理解就是在远端{服务端; 远程计算机}运行程序</p>
+<ul>
+<li>方式</li>
+</ul>
+<ol>
+<li>基在服务器直接于源代码构建+打包+启动</li>
+<li>本地构建+打包+传输到服务器+启动</li>
+</ol>
+<ul>
+<li>相同点</li>
+</ul>
+<ol>
+<li>都可以部署到服务器</li>
+<li>两者都是能完全自动化进行的, 写个脚本即可 (前者需要代码使用Git之类的版本控制程序, 后者需要文件传输软件{FTP, Rsync})</li>
+</ol>
+<ul>
+<li>区别</li>
+</ul>
+<ol>
+<li>后者始终需要在本地打包, 需要一个传输过程, 更慢<blockquote>
+<p>就算是差分同步也只能细化到文件, 但代码可以细化到某个具体的源文件</p>
+</blockquote>
+</li>
+</ol>
+
+      </div>
+      <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="https://sailhe.github.io">SailHe</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="https://sailhe.github.io/2019/06/01/Way-For-Startup-Program/">https://sailhe.github.io/2019/06/01/Way-For-Startup-Program/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span><a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+      <footer class="post-footer">
+        <div class="post-tags">
+            <a href="/tags/Operating-System/">Operating-System</a>
+            </div>
+        
+        <nav class="post-nav"><a class="prev" href="/2019/06/02/ECMAScript-Learning/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">ECMAScript-Learning</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    <a class="next" href="/2019/06/01/Java-CLI/">
+        <span class="next-text nav-default">Java-CLI</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    </nav></footer>
+    </article></div><div class="comments" id="comments"></div></div>
+      </main>
+
+      <footer id="footer" class="footer"><div class="social-links"><a href="mailto:shell.sailhe@gmail.com" class="iconfont icon-email" title="email"></a>
+        <a href="https://github.com/sailhe" class="iconfont icon-github" title="github"></a>
+        <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    </div><div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://hexo.io/">Hexo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">&copy;2015 - 2019<span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">SailHe</span>
+  </span>
+</div>
+</footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    <!-- >
+  <div class="adventure-island-container">
+    <div class="clouds">
+        <div class="bg"></div>
+    </div>
+    <div class="mountains">
+        <div class="bg"></div>
+    </div>
+    <div class="trees">
+        <div class="bg"></div>
+    </div>
+    <div class="bushes">
+        <div class="bg"></div>
+    </div>
+    <div class="lawn">
+        <div class="bg"></div>
+    </div>
+    <div class="scroll">
+        <div class="bg"></div>
+    </div>
+</div>
+<div class="cat-main">
+    <span class="stand"></span>
+    <div class="cat">
+        <div class="body"></div>
+        <div class="head">
+            <div class="ear"></div>
+            <div class="ear"></div>
+        </div>
+        <div class="face">
+            <div class="nose"></div>
+            <div class="whisker-container">
+                <div class="whisker"></div>
+                <div class="whisker"></div>
+            </div>
+            <div class="whisker-container">
+                <div class="whisker"></div>
+                <div class="whisker"></div>
+            </div>
+        </div>
+        <div class="tail-container">
+            <div class="tail">
+                <div class="tail">
+                    <div class="tail">
+                        <div class="tail">
+                            <div class="tail">
+                                <div class="tail">
+                                    <div class="tail"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div><!-- Quantity should be the same in Sass-->
+<div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+</div><script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/lib/pjax/jquery.pjax.min.js"></script>
+  <script type="text/javascript" src="/lib/nprogress/nprogress.min.js"></script>
+  <script type="text/javascript" src="/js/src/even.js?v=2.11.0"></script>
+</body>
+</html>
