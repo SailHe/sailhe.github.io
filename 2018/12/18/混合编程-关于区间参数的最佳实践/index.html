@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head><meta name="generator" content="Hexo 3.8.0"><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+<meta name="theme-color" content="#f8f5ec">
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+<meta name="description" content="混合编程时关于区间参数的最佳实践"><meta name="keywords" content="program,life"><link rel="alternate" href="/atom.xml" title="SailHe's Cyber Memory(Core)"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.11.0">
+<link rel="canonical" href="https://sailhe.github.io/2018/12/18/混合编程-关于区间参数的最佳实践/">
+
+<link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css"><link rel="stylesheet" type="text/css" href="/lib/nprogress/nprogress.min.css">
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.11.0">
+
+<script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+<script>
+  window.config = {"leancloud":{"app_id":null,"app_key":null},"toc":true,"fancybox":true,"pjax":true,"latex":false};
+</script>
+
+    <title>混合编程-关于区间参数的最佳实践 - SailHe's Cyber Memory(Core)</title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">SailHe's Cyber Memory(Core)</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list"><a href="/">
+        <li class="mobile-menu-item">首页
+          </li>
+      </a><a href="/archives/">
+        <li class="mobile-menu-item">归档
+          </li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签
+          </li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类
+          </li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">关于
+          </li>
+      </a></ul>
+</nav>
+<div class="container background-transparent" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">SailHe's Cyber Memory(Core)</a>
+</div>
+
+<nav class="site-navbar"><ul id="menu" class="menu"><li class="menu-item">
+          <a class="menu-item-link" href="/">
+            首页
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            归档
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/tags/">
+            标签
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/categories/">
+            分类
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/about/">
+            关于
+            </a>
+        </li>
+      </ul></nav>
+</header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper transform-shadow">
+          <div id="content" class="content"><article class="post">
+    <header class="post-header">
+      <h1 class="post-title">混合编程-关于区间参数的最佳实践
+        </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2018-12-18
+        </span><span class="post-category">
+            <a href="/categories/Induction/">Induction</a>
+            </span>
+        </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#网络"><span class="toc-text">网络</span></a></li></ol>
+    </div>
+  </div><div class="post-content"><p>若想写出便于移植的代码, 对于常见语言的容器或类来说, 这几门语言之间的共同点是什么; 问题的最佳实践又是什么</p>
+<p>浮点数实现上的差异(略).</p>
+<p>如果是传入一个区间, 是否都是左闭右开</p>
+<ol>
+<li><code>2022-12-25 22:02 验证</code> 这一点得到了相对广泛的验证, 各大主流语言(包括C/C++, java, js, python)皆是如此</li>
+<li>另外, 值得一提的是, 人类语言中普遍是左闭右闭区间, 可以视为是一个约定了</li>
+</ol>
+<h1 id="网络"><a href="#网络" class="headerlink" title="网络"></a>网络</h1><p>当服务器被告知监听时0.0.0.0，意味着“监听每个可用的网络接口”。<br>127.0.0.1从服务器进程的角度看，具有IP地址的环回适配器看起来就像机器上的任何其他网络适配器一样，因此被告知监听的服务器0.0.0.0也将接受该接口上的连接。</p>
+<ul>
+<li>Github Gist 2018年12月左右</li>
+<li>更新: 2019-05-19 20:38:57</li>
+</ul>
+
+      </div>
+      <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="https://sailhe.github.io">SailHe</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="https://sailhe.github.io/2018/12/18/混合编程-关于区间参数的最佳实践/">https://sailhe.github.io/2018/12/18/混合编程-关于区间参数的最佳实践/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span><a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+      <footer class="post-footer">
+        <div class="post-tags">
+            <a href="/tags/ESR/">ESR</a>
+            <a href="/tags/Pits/">Pits</a>
+            <a href="/tags/混合编程/">混合编程</a>
+            </div>
+        
+        <nav class="post-nav"><a class="prev" href="/2018/12/20/正确认识操作系统进程/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">正确认识操作系统进程</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    <a class="next" href="/2018/12/17/混合编程-类似函数区分/">
+        <span class="next-text nav-default">混合编程-类似函数区分</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    </nav></footer>
+    </article></div><div class="comments" id="comments"></div></div>
+      </main>
+
+      <footer id="footer" class="footer"><div class="social-links"><a href="mailto:shell.sailhe@gmail.com" class="iconfont icon-email" title="email"></a>
+        <a href="https://github.com/sailhe" class="iconfont icon-github" title="github"></a>
+        <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    </div><div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://hexo.io/">Hexo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">&copy;2018 - 2024<span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">SailHe</span>
+  </span>
+</div>
+</footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    <!-- >
+  <div class="adventure-island-container">
+    <div class="clouds">
+        <div class="bg"></div>
+    </div>
+    <div class="mountains">
+        <div class="bg"></div>
+    </div>
+    <div class="trees">
+        <div class="bg"></div>
+    </div>
+    <div class="bushes">
+        <div class="bg"></div>
+    </div>
+    <div class="lawn">
+        <div class="bg"></div>
+    </div>
+    <div class="scroll">
+        <div class="bg"></div>
+    </div>
+</div>
+<div class="cat-main">
+    <span class="stand"></span>
+    <div class="cat">
+        <div class="body"></div>
+        <div class="head">
+            <div class="ear"></div>
+            <div class="ear"></div>
+        </div>
+        <div class="face">
+            <div class="nose"></div>
+            <div class="whisker-container">
+                <div class="whisker"></div>
+                <div class="whisker"></div>
+            </div>
+            <div class="whisker-container">
+                <div class="whisker"></div>
+                <div class="whisker"></div>
+            </div>
+        </div>
+        <div class="tail-container">
+            <div class="tail">
+                <div class="tail">
+                    <div class="tail">
+                        <div class="tail">
+                            <div class="tail">
+                                <div class="tail">
+                                    <div class="tail"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div><!-- Quantity should be the same in Sass-->
+<div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+</div><script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/lib/pjax/jquery.pjax.min.js"></script>
+  <script type="text/javascript" src="/lib/nprogress/nprogress.min.js"></script>
+  <script type="text/javascript" src="/js/src/even.js?v=2.11.0"></script>
+</body>
+</html>

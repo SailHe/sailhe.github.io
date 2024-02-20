@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head><meta name="generator" content="Hexo 3.8.0"><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+<meta name="theme-color" content="#f8f5ec">
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+<meta name="description" content="记录首次大范围使用Git后的心得体会"><meta name="keywords" content="program,life"><link rel="alternate" href="/atom.xml" title="SailHe's Cyber Memory(Core)"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.11.0">
+<link rel="canonical" href="https://sailhe.github.io/2018/12/15/初探Git/">
+
+<link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css"><link rel="stylesheet" type="text/css" href="/lib/nprogress/nprogress.min.css">
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.11.0">
+
+<script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+<script>
+  window.config = {"leancloud":{"app_id":null,"app_key":null},"toc":true,"fancybox":true,"pjax":true,"latex":false};
+</script>
+
+    <title>初探Git - SailHe's Cyber Memory(Core)</title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">SailHe's Cyber Memory(Core)</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list"><a href="/">
+        <li class="mobile-menu-item">首页
+          </li>
+      </a><a href="/archives/">
+        <li class="mobile-menu-item">归档
+          </li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签
+          </li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类
+          </li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">关于
+          </li>
+      </a></ul>
+</nav>
+<div class="container background-transparent" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">SailHe's Cyber Memory(Core)</a>
+</div>
+
+<nav class="site-navbar"><ul id="menu" class="menu"><li class="menu-item">
+          <a class="menu-item-link" href="/">
+            首页
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            归档
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/tags/">
+            标签
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/categories/">
+            分类
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/about/">
+            关于
+            </a>
+        </li>
+      </ul></nav>
+</header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper transform-shadow">
+          <div id="content" class="content"><article class="post">
+    <header class="post-header">
+      <h1 class="post-title">初探Git
+        </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2018-12-15
+        </span><span class="post-category">
+            <a href="/categories/Tutorial/">Tutorial</a>
+            </span>
+        </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#基础"><span class="toc-text">基础</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#切换远程仓库地址"><span class="toc-text">切换远程仓库地址</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Github的多人协作"><span class="toc-text">Github的多人协作</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#fork并且更新一个仓库"><span class="toc-text">fork并且更新一个仓库</span></a></li></ol>
+    </div>
+  </div><div class="post-content"><h1 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h1><h2 id="切换远程仓库地址"><a href="#切换远程仓库地址" class="headerlink" title="切换远程仓库地址"></a>切换远程仓库地址</h2><p>一、修改命令<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote <span class="built_in">set</span>-url origin url</span><br></pre></td></tr></table></figure></p>
+<p>二、先删后加<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git remote rm origin</span><br><span class="line">git remote add origin git@github.com:sheng/repo-name.git</span><br></pre></td></tr></table></figure></p>
+<p>三、修改config文件<br>如果你的项目有加入版本控制的话, 在项目根目录下查看隐藏的.git文件夹直接修改config文件的git remote origin地址.</p>
+<ul>
+<li><a href="https://rogerdudler.github.io/git-guide/index.zh.html" target="_blank" rel="noopener">简明教程1</a></li>
+<li><a href="https://www.kancloud.cn/thinkphp/github-tips/37896" target="_blank" rel="noopener">简明教程2</a></li>
+<li><a href="https://docs.spongepowered.org/stable/zh-CN/contributing/howtogit.html" target="_blank" rel="noopener">进阶</a></li>
+</ul>
+<h1 id="Github的多人协作"><a href="#Github的多人协作" class="headerlink" title="Github的多人协作"></a><a href="https://gist.github.com/suziewong/4378619" target="_blank" rel="noopener">Github的多人协作</a></h1><h1 id="fork并且更新一个仓库"><a href="#fork并且更新一个仓库" class="headerlink" title="fork并且更新一个仓库"></a>fork并且更新一个仓库</h1><p><a href="https://www.cnblogs.com/wzyxidian/p/5520051.html" target="_blank" rel="noopener">原文</a><br>现在有这样一种情形：有一个叫做Joe的程序猿写了一个游戏程序，而你可能要去改进它。并且Joe将他的代码放在了GitHub仓库上。下面是你要做的事情：</p>
+<blockquote>
+<p>fork并且更新GitHub仓库 图表演示<br>    Fork他的仓库：这是GitHub操作，这个操作会复制Joe的仓库（包括文件，提交历史，issues，和其余一些东西）。<br>    复制后的仓库在你自己的GitHub帐号下。目前，你本地计算机对这个仓库没有任何操作。<br>    Clone你的仓库：这是Git操作。使用该操作让你发送”请给我发一份我仓库的复制文件”的命令给GitHub。<br>    现在这个仓库就会存储在你本地计算机上。<br>    更新某些文件：现在，你可以在任何程序或者环境下更新仓库里的文件。<br>    提交你的更改：这是Git操作。使用该操作让你发送”记录我的更改”的命令至GitHub。此操作只在你的本地计算机上完成。<br>    将你的更改push到你的GitHub仓库：这是Git操作。使用该操作让你发送”这是我的修改”的信息给GitHub。<br>    Push操作不会自动完成，所以直到你做了push操作，GitHub才知道你的提交。<br>    给Joe发送一个pull request：如果你认为Joe会接受你的修改，你就可以给他发送一个pull request。<br>    这是GitHub操作，使用此操作可以帮助你和Joe交流你的修改，并且询问Joe是否愿意接受你的”pull request”，当然，接不接受完全取决于他自己。<br>    如果Joe接受了你的pull request，他将把那些修改拉到自己的仓库。胜利！</p>
+</blockquote>
+<blockquote>
+<p>同步一个fork<br>    Joe和其余贡献者已经对这个项目做了一些修改，而你将在他们的修改的基础上，还要再做一些修改。<br>    在你开始之前，你最好”同步你的fork”，以确保在最新的复制版本里工作。下面是你要做的：<br>    Alt text<br>    同步GitHub fork 图表示意图<br>    从Joe的仓库中取出那些变化的文件：这是Git操作，使用该命令让你可以从Joe的仓库获取最新的文件。<br>    将这些修改合并到你自己的仓库：这是Git操作，使用该命令使得那些修改更新到你的本地计算机（那些修改暂时存放在一个”分支”中）。<br>    记住：步骤1和2经常结合为一个命令使用，合并后的Git命令叫做”pull”。<br>    将那些修改更新推送到你的GitHub仓库（可选）：记住，你本地计算机不会自动更新你的GitHub仓库。<br>    所以，唯一更新GitHub仓库的办法就是将那些修改推送上去。你可以在步骤2完成后立即执行push，也可以等到你做了自己的一些修改，并已经本地提交后再执行推送操作。<br>    比较一下fork和同步工作流程的区别：当你最初fork一个仓库的时候，信息的流向是从Joe的仓库到你的仓库，然后再到你本地计算机。<br>    但是最初的过程之后，信息的流向是从Joe的仓库到你的本地计算机，之后再到你的仓库。</p>
+</blockquote>
+<ul>
+<li>Github Gist 2018年12月左右</li>
+<li>更新: 2019-05-19 20:33:46</li>
+</ul>
+
+      </div>
+      <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="https://sailhe.github.io">SailHe</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="https://sailhe.github.io/2018/12/15/初探Git/">https://sailhe.github.io/2018/12/15/初探Git/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span><a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+      <footer class="post-footer">
+        <div class="post-tags">
+            <a href="/tags/Git/">Git</a>
+            </div>
+        
+        <nav class="post-nav"><a class="prev" href="/2018/12/17/混合编程-类似函数区分/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">混合编程-类似函数区分</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    <a class="next" href="/2018/12/14/编程文档黄页/">
+        <span class="next-text nav-default">编程文档黄页</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    </nav></footer>
+    </article></div><div class="comments" id="comments"></div></div>
+      </main>
+
+      <footer id="footer" class="footer"><div class="social-links"><a href="mailto:shell.sailhe@gmail.com" class="iconfont icon-email" title="email"></a>
+        <a href="https://github.com/sailhe" class="iconfont icon-github" title="github"></a>
+        <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    </div><div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://hexo.io/">Hexo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">&copy;2018 - 2024<span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">SailHe</span>
+  </span>
+</div>
+</footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    <!-- >
+  <div class="adventure-island-container">
+    <div class="clouds">
+        <div class="bg"></div>
+    </div>
+    <div class="mountains">
+        <div class="bg"></div>
+    </div>
+    <div class="trees">
+        <div class="bg"></div>
+    </div>
+    <div class="bushes">
+        <div class="bg"></div>
+    </div>
+    <div class="lawn">
+        <div class="bg"></div>
+    </div>
+    <div class="scroll">
+        <div class="bg"></div>
+    </div>
+</div>
+<div class="cat-main">
+    <span class="stand"></span>
+    <div class="cat">
+        <div class="body"></div>
+        <div class="head">
+            <div class="ear"></div>
+            <div class="ear"></div>
+        </div>
+        <div class="face">
+            <div class="nose"></div>
+            <div class="whisker-container">
+                <div class="whisker"></div>
+                <div class="whisker"></div>
+            </div>
+            <div class="whisker-container">
+                <div class="whisker"></div>
+                <div class="whisker"></div>
+            </div>
+        </div>
+        <div class="tail-container">
+            <div class="tail">
+                <div class="tail">
+                    <div class="tail">
+                        <div class="tail">
+                            <div class="tail">
+                                <div class="tail">
+                                    <div class="tail"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div><!-- Quantity should be the same in Sass-->
+<div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+</div><script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/lib/pjax/jquery.pjax.min.js"></script>
+  <script type="text/javascript" src="/lib/nprogress/nprogress.min.js"></script>
+  <script type="text/javascript" src="/js/src/even.js?v=2.11.0"></script>
+</body>
+</html>

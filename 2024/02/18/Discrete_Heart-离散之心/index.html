@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head><meta name="generator" content="Hexo 3.8.0"><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+<meta name="theme-color" content="#f8f5ec">
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+<meta name="description" content="离散之心是一款俯视角2D像素风格的情感构筑类游戏. 喜悦,信任,害怕...每种初始情感对应不同初始属性与道具,玩家" 注入"并操控游戏角色, 构筑8种基础情感, 寻找名为"无心"的答案."><meta name="keywords" content="program,life"><link rel="alternate" href="/atom.xml" title="SailHe's Cyber Memory(Core)"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.11.0">
+<link rel="canonical" href="https://sailhe.github.io/2024/02/18/Discrete_Heart-离散之心/">
+
+<link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css"><link rel="stylesheet" type="text/css" href="/lib/nprogress/nprogress.min.css">
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.11.0">
+
+<script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+<script>
+  window.config = {"leancloud":{"app_id":null,"app_key":null},"toc":true,"fancybox":true,"pjax":true,"latex":false};
+</script>
+
+    <title>Discrete_Heart-离散之心 - SailHe's Cyber Memory(Core)</title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">SailHe's Cyber Memory(Core)</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list"><a href="/">
+        <li class="mobile-menu-item">首页
+          </li>
+      </a><a href="/archives/">
+        <li class="mobile-menu-item">归档
+          </li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签
+          </li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类
+          </li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">关于
+          </li>
+      </a></ul>
+</nav>
+<div class="container background-transparent" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">SailHe's Cyber Memory(Core)</a>
+</div>
+
+<nav class="site-navbar"><ul id="menu" class="menu"><li class="menu-item">
+          <a class="menu-item-link" href="/">
+            首页
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            归档
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/tags/">
+            标签
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/categories/">
+            分类
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/about/">
+            关于
+            </a>
+        </li>
+      </ul></nav>
+</header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper transform-shadow">
+          <div id="content" class="content"><article class="post">
+    <header class="post-header">
+      <h1 class="post-title">Discrete_Heart-离散之心
+        </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2024-02-18
+        </span><span class="post-category">
+            <a href="/categories/GameDevelop/">GameDevelop</a>
+            </span>
+        </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#商店内容"><span class="toc-text">商店内容</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#关于这款游戏"><span class="toc-text">关于这款游戏</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#背景设定"><span class="toc-text">背景设定:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#主要目标"><span class="toc-text">主要目标:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#主要特色"><span class="toc-text">主要特色:</span></a></li></ol></li></ol>
+    </div>
+  </div><div class="post-content"><p>商店页面已经开放, 可添加<strong>愿望单</strong>.</p>
+<p><a href="https://store.steampowered.com/app/2617300?utm_source=sailhe.github.io" target="_blank" rel="noopener">Steam 上的 离散之心</a></p>
+<p>下面是商店页面的主要内容(截止<code>2024-02-19</code>)</p>
+<h2 id="商店内容"><a href="#商店内容" class="headerlink" title="商店内容"></a>商店内容</h2><h3 id="关于这款游戏"><a href="#关于这款游戏" class="headerlink" title="关于这款游戏"></a>关于这款游戏</h3><p>离散之心是一款俯视角2D像素风格的情感构筑类游戏. 喜悦,信任,害怕…每种初始情感对应不同初始属性与道具,玩家”注入”并操控游戏角色, 构筑8种基础情感, 寻找名为”无心”的答案.</p>
+<h3 id="背景设定"><a href="#背景设定" class="headerlink" title="背景设定:"></a>背景设定:</h3><p>从前车马很慢, 书信很远, 鸽子连接思念的两端, 象征”爱与和平”;<br>现在机械喧嚣, 人潮拥挤, 信息膨胀, 放鸽子象征着”背叛与纷争”.<br>在某个赛博朋克的未来世界时间线下, 秩序分崩离析的社会上有越来越多的人必须用更快的速度正确理解并处理遭遇的情感:<br>餐厅服务员错误捕获了客人的心情, 办公室职员未能及时体会领导的心思, 他们丢掉了工作…<br>自己生活尚未安顿就贪图享乐未婚先孕, 无人照顾的后代, 被战争波及的人们, 他们的情感, 他们的未来又该何去何从?<br>翘首以盼, AlphaMood开发出了第一代离散之心情感模组, 该模组的其中一个重大功能是通过模拟意识训练参与者对模块的适配度, 现在这项测试活动正招募志愿者.<br>“一切都变得更快, 情感也需要如此”, 一位匿名人士如此评价道, “植入电子情感芯片势在必行”.<br>于是一个又一个情感麻木的角色, 被生活磋磨得心如死灰的ta们正打算参与情感模组训练, 成为那个更懂”散心”的”无心者”, 一切烦恼都将烟消云散.<br>离成为那个最懂打工不用吃喝拉撒的极品工具人又近了一步, “这只是AlphaMood的一小步, 却是所有打工人的一大步”, AlphaMood的CEO在发布会上如此说道.</p>
+<h3 id="主要目标"><a href="#主要目标" class="headerlink" title="主要目标:"></a>主要目标:</h3><p>上面那些都不是玩家要关心的, 玩家只需要完成游戏就行了.<br>每局游戏的主要目标是在限制的时间指数(一个用于模拟现实时间的数值)内从数个随机生成的副地图种找到随机分布的8个基础移情物并成为”无心者”, 回到主地图将之交给”向导”即可完成一局游戏.</p>
+<h3 id="主要特色"><a href="#主要特色" class="headerlink" title="主要特色:"></a>主要特色:</h3><ul>
+<li>情感构筑核心玩法, 该玩法灵感来自普拉齐克情感轮(Plutchik-wheel)  <ol>
+<li>还原了情感轮理论主要内容, 包括基础情感,组合情感等.  </li>
+<li>情感被设定为能增益或减益各项能力, 得到移情配方之后可以通过移情自行调整这种组合.  </li>
+<li>需要根据遭遇的情况自行决定应该获得或者保留哪些情感, 以及…偶尔也可能会遭遇一点儿意外打破你的计划.  </li>
+<li>向导只会认可”无心者”完成游戏.  </li>
+</ol>
+</li>
+<li>没有太多系统层面的限制, 玩家并不是一定要扮演某个主角以某种形式拯救世界, 您可以刻意扮演某个角色, 取决于您自己。  </li>
+<li>与NPC互动, 剧情包含解谜要素, 各种剧情之间可能存在联系但也并不是一定要联系.  </li>
+<li>经过简化的ARPG战斗系统: 没有花哨的技能与魔法系统, 有数种冷兵器可以做为战斗武器.  </li>
+<li>轻度ROGUE: 经过裁剪的RogueLike机制  <ol>
+<li>玩家将在视野受限的地图中展开活动.  </li>
+<li>随机生成的副地图(一局游戏会生成一次, 在不同副地图会有地形与更大可能性遇见特定类型的单位).  </li>
+<li>随机属性点奖励.  </li>
+<li>在副地图中遭遇随机生成的单位, 并对可能发生的剧情进行选择.  </li>
+<li>包括玩家在内所有单位可以拾取物品, 有独立存档并且会永久死亡  </li>
+</ol>
+</li>
+<li>交易系统: 可以与大多数NPC进行交易, 使用货币换取他们手中你想要的物品.  </li>
+<li>合成系统: 获得配方之后可以合成物品  </li>
+<li>自由决定所有NPC的生死, 没有剧情限制的战斗.  </li>
+<li>所有单位有主动触发战斗的可能性(所有单位是无阵营的)  </li>
+<li>所有单位随机生成并跟随玩家控制角色的成长而成长  </li>
+<li>熟悉之后一局游戏时间可以控制在30min以内, 适合碎片时间.</li>
+</ul>
+<p>希望您玩得开心, 生活愉快!<br>最重要的是: 心情不好的时候记得”散心”.</p>
+<p><img src="https://media.st.dl.eccdnx.com/steam/apps/2617300/extras/GIF_2023-12-11_20-36-44_%E6%B4%9E%E7%A9%B4%E4%B8%AD%E7%9F%B3%E7%8B%AE%E5%AD%90%E5%85%89%E5%BD%B1%E6%95%88%E6%9E%9C_all_lan.gif?t=1708252396" alt></p>
+
+      </div>
+      <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="https://sailhe.github.io">SailHe</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="https://sailhe.github.io/2024/02/18/Discrete_Heart-离散之心/">https://sailhe.github.io/2024/02/18/Discrete_Heart-离散之心/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span><a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+      <footer class="post-footer">
+        <div class="post-tags">
+            <a href="/tags/aRPG/">aRPG</a>
+            <a href="/tags/心理学/">心理学</a>
+            <a href="/tags/Steam/">Steam</a>
+            </div>
+        
+        <nav class="post-nav"><a class="prev" href="/2024/02/19/离散之心与情感轮/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">离散之心与情感轮</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    <a class="next" href="/2022/12/25/STL_vector_benchmarking/">
+        <span class="next-text nav-default">STL_vector_benchmarking</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    </nav></footer>
+    </article></div><div class="comments" id="comments"></div></div>
+      </main>
+
+      <footer id="footer" class="footer"><div class="social-links"><a href="mailto:shell.sailhe@gmail.com" class="iconfont icon-email" title="email"></a>
+        <a href="https://github.com/sailhe" class="iconfont icon-github" title="github"></a>
+        <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    </div><div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://hexo.io/">Hexo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">&copy;2018 - 2024<span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">SailHe</span>
+  </span>
+</div>
+</footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    <!-- >
+  <div class="adventure-island-container">
+    <div class="clouds">
+        <div class="bg"></div>
+    </div>
+    <div class="mountains">
+        <div class="bg"></div>
+    </div>
+    <div class="trees">
+        <div class="bg"></div>
+    </div>
+    <div class="bushes">
+        <div class="bg"></div>
+    </div>
+    <div class="lawn">
+        <div class="bg"></div>
+    </div>
+    <div class="scroll">
+        <div class="bg"></div>
+    </div>
+</div>
+<div class="cat-main">
+    <span class="stand"></span>
+    <div class="cat">
+        <div class="body"></div>
+        <div class="head">
+            <div class="ear"></div>
+            <div class="ear"></div>
+        </div>
+        <div class="face">
+            <div class="nose"></div>
+            <div class="whisker-container">
+                <div class="whisker"></div>
+                <div class="whisker"></div>
+            </div>
+            <div class="whisker-container">
+                <div class="whisker"></div>
+                <div class="whisker"></div>
+            </div>
+        </div>
+        <div class="tail-container">
+            <div class="tail">
+                <div class="tail">
+                    <div class="tail">
+                        <div class="tail">
+                            <div class="tail">
+                                <div class="tail">
+                                    <div class="tail"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div><!-- Quantity should be the same in Sass-->
+<div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+</div><script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/lib/pjax/jquery.pjax.min.js"></script>
+  <script type="text/javascript" src="/lib/nprogress/nprogress.min.js"></script>
+  <script type="text/javascript" src="/js/src/even.js?v=2.11.0"></script>
+</body>
+</html>

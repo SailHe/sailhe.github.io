@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head><meta name="generator" content="Hexo 3.8.0"><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+<meta name="theme-color" content="#f8f5ec">
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+<meta name="description" content="自定义FireFox"><meta name="keywords" content="program,life"><link rel="alternate" href="/atom.xml" title="SailHe's Cyber Memory(Core)"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.11.0">
+<link rel="canonical" href="https://sailhe.github.io/2019/07/05/关于FireFox与Chrome浏览器的日常使用/">
+
+<link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css"><link rel="stylesheet" type="text/css" href="/lib/nprogress/nprogress.min.css">
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.11.0">
+
+<script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+<script>
+  window.config = {"leancloud":{"app_id":null,"app_key":null},"toc":true,"fancybox":true,"pjax":true,"latex":false};
+</script>
+
+    <title>关于FireFox与Chrome浏览器的日常使用 - SailHe's Cyber Memory(Core)</title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">SailHe's Cyber Memory(Core)</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list"><a href="/">
+        <li class="mobile-menu-item">首页
+          </li>
+      </a><a href="/archives/">
+        <li class="mobile-menu-item">归档
+          </li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签
+          </li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类
+          </li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">关于
+          </li>
+      </a></ul>
+</nav>
+<div class="container background-transparent" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">SailHe's Cyber Memory(Core)</a>
+</div>
+
+<nav class="site-navbar"><ul id="menu" class="menu"><li class="menu-item">
+          <a class="menu-item-link" href="/">
+            首页
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            归档
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/tags/">
+            标签
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/categories/">
+            分类
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/about/">
+            关于
+            </a>
+        </li>
+      </ul></nav>
+</header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper transform-shadow">
+          <div id="content" class="content"><article class="post">
+    <header class="post-header">
+      <h1 class="post-title">关于FireFox与Chrome浏览器的日常使用
+        </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2019-07-05
+        </span><span class="post-category">
+            <a href="/categories/Induction/">Induction</a>
+            </span>
+        </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#你可能也需要的功能-amp-解决方案"><span class="toc-text">你可能也需要的功能&amp;解决方案</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#其他"><span class="toc-text">其他</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#浏览器数据"><span class="toc-text">浏览器数据</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安全"><span class="toc-text">安全</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2019-05-03-证书过期事件"><span class="toc-text">2019-05-03_证书过期事件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#疑似chrome某个版本的BUG"><span class="toc-text">疑似chrome某个版本的BUG</span></a></li></ol></li></ol>
+    </div>
+  </div><div class="post-content"><h1 id="你可能也需要的功能-amp-解决方案"><a href="#你可能也需要的功能-amp-解决方案" class="headerlink" title="你可能也需要的功能&amp;解决方案"></a>你可能也需要的功能&amp;解决方案</h1><p>解决方案</p>
+<ol>
+<li><a href="/2019/07/05/FireFox-Customize/#Tips">已存在的功能</a></li>
+<li>附加组件</li>
+<li>脚本</li>
+</ol>
+<ul>
+<li><code>脚本</code>从Google翻译界面获取原文链接</li>
+</ul>
+<p>挺暴力的实现:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ==UserScript==</span></span><br><span class="line"><span class="comment">// @name Google翻译(上下文)将原链接输出至控制台</span></span><br><span class="line"><span class="comment">// @namespace Violentmonkey Scripts</span></span><br><span class="line"><span class="comment">// @match https://translate.googleusercontent.com/translate_c</span></span><br><span class="line"><span class="comment">// @require		https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js</span></span><br><span class="line"><span class="comment">// @grant none</span></span><br><span class="line"><span class="comment">// ==/UserScript==</span></span><br><span class="line"></span><br><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"><span class="meta">  'use strict'</span>;</span><br><span class="line">  <span class="comment">// window.location.host</span></span><br><span class="line">  <span class="keyword">let</span> current_url = <span class="built_in">window</span>.location.href.substr(<span class="number">113</span>);</span><br><span class="line">  current_url = current_url.substr(<span class="number">0</span>, current_url.indexOf(<span class="string">"&amp;"</span>));</span><br><span class="line">  <span class="comment">// console.copy(current_url);</span></span><br><span class="line">  <span class="built_in">console</span>.clear();</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"已清空"</span>);</span><br><span class="line">  <span class="built_in">console</span>.log(current_url);</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li><code>脚本</code>将google搜索界面的统计链接换为直链: 已有类似实现-&gt;搜索</li>
+<li><code>附加组件</code>站内搜索FireFox插件(或者基于支持站内搜索语法的搜索引擎)<ol>
+<li>可使用<a href="https://github.com/SailHe/GlitterDrag" target="_blank" rel="noopener">GlitterDrag</a>实现</li>
+</ol>
+</li>
+<li><code>脚本</code>匹配URL</li>
+</ul>
+<ol>
+<li><p>正则表达式, 原理之类的<br><a href="https://www.cnblogs.com/cench/p/6718466.html" target="_blank" rel="noopener">js 正则匹配 域名【host】</a><br><code>SK: JS 判断是否合法URL</code><a href="https://segmentfault.com/q/1010000015105890" target="_blank" rel="noopener">求一个验证url合法性的正则，网上找了很多都有漏洞</a></p>
+<blockquote>
+<p><code>SK: 使用异常来做判断</code><a href="https://tech.msla.top/2017/09/11/用exception异常还是if判断/" target="_blank" rel="noopener">用Exception异常还是if判断</a><br>java规范的定义是说异常不要参与控制流程，你不能把异常作为一种正常的控制流程作为程序的一部分，这样是不对的.<br><a href="https://www.cnblogs.com/cench/p/6718466.html" target="_blank" rel="noopener">js 正则匹配 域名【host】 - cench - 博客园</a></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/^http(s)?:\/\/(.*?)\<span class="comment">//.exec(location.href)</span></span><br><span class="line">location.href.split(<span class="regexp">/^http(s)?:\/\/(.*?)\//</span>)</span><br></pre></td></tr></table></figure>
+</blockquote>
+</li>
+<li><p>代码</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> checkURL = <span class="function">(<span class="params">url</span>) =&gt;</span> &#123;</span><br><span class="line">	<span class="keyword">var</span> str = url;</span><br><span class="line">	<span class="comment">//判断URL地址的正则表达式为:http(s)?://([\w-]+\.)+[\w-]+(/[\w- ./?%&amp;=]*)?</span></span><br><span class="line">	<span class="comment">//下面的代码中应用了转义字符"\"输出一个字符"/"</span></span><br><span class="line">	<span class="keyword">var</span> Expression = <span class="regexp">/http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w- .\/?%&amp;=]*)?/</span>;</span><br><span class="line">	<span class="keyword">var</span> objExp = <span class="keyword">new</span> <span class="built_in">RegExp</span>(Expression);</span><br><span class="line">	<span class="keyword">if</span>(objExp.test(str) == <span class="literal">true</span>)&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">	&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// checkURL('index');  // false</span></span><br><span class="line"><span class="comment">// checkURL('http://www.baidu.com');  // true</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ul>
+<li>文本管理<ol>
+<li><a href="https://github.com/0x6b/copy-selection-as-markdown" target="_blank" rel="noopener">0x6b/copy-selection-as-markdown: Firefox add-on to copy selection as Markdown</a></li>
+</ol>
+</li>
+<li>标签页管理<ol>
+<li><a href="https://github.com/cnwangjie/better-onetab" target="_blank" rel="noopener">better-onetab</a></li>
+</ol>
+</li>
+</ul>
+<h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1><h2 id="浏览器数据"><a href="#浏览器数据" class="headerlink" title="浏览器数据"></a>浏览器数据</h2><p>清除storage:</p>
+<p><img src="/assets/2019-07-05-FireFox-Customize/清缓存.png" alt="清除storage缓存"></p>
+<p>清除Cookie: ctrl+f5</p>
+<h2 id="安全"><a href="#安全" class="headerlink" title="安全"></a>安全</h2><ul>
+<li>FireFox 提示此网站中某些内容(例如图像)不安全时 尝试屏蔽http传输的内容</li>
+<li>对于http的网站 如果被重定向至 <code>貌似现在被卖了...</code><a href="https://www.139.site" target="_blank" rel="noopener">139</a> 则说明被劫持了 此时可以尝试https(一般可以访问 但可能存在内容与http不对应的情况), 或是尝试类似TOR的加密线路</li>
+<li>简单来说有的网站http方式甚至是无法访问的(流氓式恶意重定向)</li>
+<li>有的网站会在某个特定的时间段内对原有http的网站进行重定向Https, 现象大概就是网址变化+书签标记变化(如果存了书签的话)</li>
+</ul>
+<h2 id="2019-05-03-证书过期事件"><a href="#2019-05-03-证书过期事件" class="headerlink" title="2019-05-03_证书过期事件"></a>2019-05-03_证书过期事件</h2><p><code>附加组件全部失效</code><br>about:config<br>signatures.required<br><a href="http://www.dbsec.cn/zx/20190505-5.html" target="_blank" rel="noopener">Mozilla曝出大乌龙 证书过期导致全球Firefox用户无法使用扩展</a><br>可以避免附加组件的签名验证<br><a href="https://www.solidot.org/story?sid=60486" target="_blank" rel="noopener">Solidot | 如何修复 Firefox 的扩展签名过期</a><br><a href="https://www.solidot.org/story?sid=60476" target="_blank" rel="noopener">Solidot | 因中级证书过期 Firefox 扩展停止工作</a><br><a href="https://techdows.com/2019/05/firefox-add-ons-disabled-and-fail-to-install-due-to-certificate-issue.html" target="_blank" rel="noopener">Intermediate signing certificate expiry causes All Firefox add-ons to be disabled or fail to install</a><br><a href="https://blog.mozilla.org/addons/2019/05/04/update-regarding-add-ons-in-firefox/" target="_blank" rel="noopener">Add-ons disabled or failing to install in Firefox | Mozilla Add-ons Blog</a><br><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1549017" target="_blank" rel="noopener">1549017 - All extensions disabled due to expiration of intermediate signing cert (Workaround on standard builds)</a></p>
+<p><img src="/assets/2019-07-05-FireFox-Customize/火狐.png" alt="这是谋智中国版本的火狐的首页"></p>
+<h2 id="疑似chrome某个版本的BUG"><a href="#疑似chrome某个版本的BUG" class="headerlink" title="疑似chrome某个版本的BUG"></a>疑似chrome某个版本的BUG</h2><p>但没空去研究</p>
+<p><img src="/assets/2019-07-05-FireFox-Customize/chrome.png" alt="chrome"></p>
+<p><img src="/assets/2019-07-05-FireFox-Customize/firefox-chrome.png" alt="firefox-chrome"></p>
+<p>FireFox没能找到 然后翻看了一下数据 确实没有034这一条</p>
+
+      </div>
+      <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="https://sailhe.github.io">SailHe</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="https://sailhe.github.io/2019/07/05/关于FireFox与Chrome浏览器的日常使用/">https://sailhe.github.io/2019/07/05/关于FireFox与Chrome浏览器的日常使用/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span><a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+      <footer class="post-footer">
+        <div class="post-tags">
+            <a href="/tags/折腾/">折腾</a>
+            <a href="/tags/Customize/">Customize</a>
+            </div>
+        
+        <nav class="post-nav"><a class="prev" href="/2022/12/25/STL_vector_benchmarking/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">STL_vector_benchmarking</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    <a class="next" href="/2019/07/02/DotNet全家桶与Oracle数据库/">
+        <span class="next-text nav-default">DotNet全家桶与Oracle数据库</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    </nav></footer>
+    </article></div><div class="comments" id="comments"></div></div>
+      </main>
+
+      <footer id="footer" class="footer"><div class="social-links"><a href="mailto:shell.sailhe@gmail.com" class="iconfont icon-email" title="email"></a>
+        <a href="https://github.com/sailhe" class="iconfont icon-github" title="github"></a>
+        <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    </div><div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://hexo.io/">Hexo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">&copy;2018 - 2024<span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">SailHe</span>
+  </span>
+</div>
+</footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    <!-- >
+  <div class="adventure-island-container">
+    <div class="clouds">
+        <div class="bg"></div>
+    </div>
+    <div class="mountains">
+        <div class="bg"></div>
+    </div>
+    <div class="trees">
+        <div class="bg"></div>
+    </div>
+    <div class="bushes">
+        <div class="bg"></div>
+    </div>
+    <div class="lawn">
+        <div class="bg"></div>
+    </div>
+    <div class="scroll">
+        <div class="bg"></div>
+    </div>
+</div>
+<div class="cat-main">
+    <span class="stand"></span>
+    <div class="cat">
+        <div class="body"></div>
+        <div class="head">
+            <div class="ear"></div>
+            <div class="ear"></div>
+        </div>
+        <div class="face">
+            <div class="nose"></div>
+            <div class="whisker-container">
+                <div class="whisker"></div>
+                <div class="whisker"></div>
+            </div>
+            <div class="whisker-container">
+                <div class="whisker"></div>
+                <div class="whisker"></div>
+            </div>
+        </div>
+        <div class="tail-container">
+            <div class="tail">
+                <div class="tail">
+                    <div class="tail">
+                        <div class="tail">
+                            <div class="tail">
+                                <div class="tail">
+                                    <div class="tail"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div><!-- Quantity should be the same in Sass-->
+<div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+</div><script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/lib/pjax/jquery.pjax.min.js"></script>
+  <script type="text/javascript" src="/lib/nprogress/nprogress.min.js"></script>
+  <script type="text/javascript" src="/js/src/even.js?v=2.11.0"></script>
+</body>
+</html>

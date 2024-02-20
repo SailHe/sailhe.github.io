@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head><meta name="generator" content="Hexo 3.8.0"><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+<meta name="theme-color" content="#f8f5ec">
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+<meta name="description" content="上手ASP.NET Boilerplate (ASP.NET样板项目) ABP-Learning"><meta name="keywords" content="program,life"><link rel="alternate" href="/atom.xml" title="SailHe's Cyber Memory(Core)"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.11.0">
+<link rel="canonical" href="https://sailhe.github.io/2019/07/02/DotNet全家桶与Oracle数据库/">
+
+<link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css"><link rel="stylesheet" type="text/css" href="/lib/nprogress/nprogress.min.css">
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.11.0">
+
+<script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+<script>
+  window.config = {"leancloud":{"app_id":null,"app_key":null},"toc":true,"fancybox":true,"pjax":true,"latex":false};
+</script>
+
+    <title>DotNet全家桶与Oracle数据库 - SailHe's Cyber Memory(Core)</title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">SailHe's Cyber Memory(Core)</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list"><a href="/">
+        <li class="mobile-menu-item">首页
+          </li>
+      </a><a href="/archives/">
+        <li class="mobile-menu-item">归档
+          </li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签
+          </li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类
+          </li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">关于
+          </li>
+      </a></ul>
+</nav>
+<div class="container background-transparent" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">SailHe's Cyber Memory(Core)</a>
+</div>
+
+<nav class="site-navbar"><ul id="menu" class="menu"><li class="menu-item">
+          <a class="menu-item-link" href="/">
+            首页
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            归档
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/tags/">
+            标签
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/categories/">
+            分类
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/about/">
+            关于
+            </a>
+        </li>
+      </ul></nav>
+</header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper transform-shadow">
+          <div id="content" class="content"><article class="post">
+    <header class="post-header">
+      <h1 class="post-title">DotNet全家桶与Oracle数据库
+        </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2019-07-02
+        </span><span class="post-category">
+            <a href="/categories/DotNet/">DotNet</a>
+            </span>
+        </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#前言"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#数据库环境"><span class="toc-text">数据库环境</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#C-编程入门"><span class="toc-text">C#编程入门</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#DotNet入门"><span class="toc-text">DotNet入门</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#遇见的很多问题及其大致解决思路"><span class="toc-text">遇见的很多问题及其大致解决思路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ABP框架"><span class="toc-text">ABP框架</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#基本使用"><span class="toc-text">基本使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#单元测试"><span class="toc-text">单元测试</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#初始化测试资源"><span class="toc-text">初始化测试资源</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#释放资源"><span class="toc-text">释放资源</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#IIS"><span class="toc-text">IIS</span></a></li></ol></li></ol></li></ol>
+    </div>
+  </div><div class="post-content"><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><ul>
+<li><strong>本文是按照时间顺序记录的流水帐,未经整理</strong></li>
+<li>流水帐的好处在于符合认知规律</li>
+</ul>
+<h1 id="数据库环境"><a href="#数据库环境" class="headerlink" title="数据库环境"></a>数据库环境</h1><p><a href="https://beansoftapp.github.io/2010/11/18/oracle%E6%95%B0%E6%8D%AE%E5%BA%9311gr2%E4%B8%8B%E8%BD%BD%E5%9C%B0%E5%9D%80/" target="_blank" rel="noopener">Oracle数据库11gR2下载地址 - WebLogic Android 博客</a><br>将注册表中的服务对应的表项删除后,重启即可看到服务项被删除</p>
+<p><a href="https://www.cnblogs.com/hoobey/p/6010804.html" target="_blank" rel="noopener">Oracle 11g安装步骤详谈 - starskyhu - 博客园</a><br><a href="https://jlhxxxx.github.io/oracle-rudiment.html" target="_blank" rel="noopener">Oracle 十全大补汤 | AMAN’s BLOG</a></p>
+<p>执行sqlplus报错<code>SP2-0750: You may need to set ORACLE_HOME to your Oracle software directory</code>ORACLE_HOME环境变量未配置好: 需要到app…home这一级<br><code>ORA-12560: TNS: 协议适配器错误</code>未解决 重装oracle<br><a href="https://www.jianshu.com/p/3d84efb92484" target="_blank" rel="noopener">Windows下把Oracle卸载干净 - 简书</a></p>
+<p><code>INS-13001 环境不满足最低要求</code> 忽略就行 也可参考更改配置文件(但是没看明白)<br><a href="https://ianeiu.github.io/2018/09/19/oracle%E5%BC%82%E5%B8%B8%E9%9B%86/" target="_blank" rel="noopener">Oracle——异常集 · IanEiU</a></p>
+<p><code>OUI-10137</code>C:\Program Files\Oracle\Inventory没有删除(PS: 在这种情况下新生成的文件不用删除)<br><code>在注册表中没有找到指定的主目录名</code> 据说是没有更改环境变量 但是这里是更改了的 或许和之前没有删除OUI-10137错误的文件有关</p>
+<p>事后可登录 <a href="https://localhost:1158/em" target="_blank" rel="noopener">Oracle Enterprise Manager</a><br>仅管理员才是可以登录到 Enterprise Manager 执行管理任务 (如设置封锁, 电子邮件通知调度) 的数据库用户。</p>
+<p><img src="/assets/img/sharding/oracle/oracle安装成功结果.png" alt="oracle安装成功结果"></p>
+<p>然后使用<strong>数据库管理软件</strong>连接:</p>
+<p><strong>Toad</strong>是数据库管理及开发的极佳工具，简单的说就是oem+sqlplus+pl/sql developer</p>
+<p><code>错误 忘了怎么解决的了</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Cannot load OCI DLL:  DriveLetter:\app\username\product\11.2.0\instantclient_11_1\oci.dll</span><br></pre></td></tr></table></figure></p>
+<p><code>错误 忘了怎么解决的了</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">This product require Microsoft MSXML 4.20.9818.0 or above and will not be installed at this time. Please refer to the product release notes for specific requirements. Microsoft MSXML 4(msxml.msi) can be installed from the Microsoft download centre . </span><br><span class="line">Benchmark Factory® for Databases is a database replay and performance testing tool that stress tests your environment by simulating users and SQL transactions on the database. Developers and QA professionals use Benchmark Factory and Toad to test SQL and database code against development SLAs and scalability. DBAs use Benchmark Factory and Toad to replay database workload or utilize industry standard benchmarks to mitigate the risks of database upgrades, migrations or patch releases.</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>坑(最前面是解决方案 链接的名称就是坑的描述)<ul>
+<li><code>忽略</code><a href="http://blog.sina.com.cn/s/blog_5674f6d401012ekw.html" target="_blank" rel="noopener">Oracle安装错误ora-00922（缺少或无效选项）</a></li>
+<li><code>GK 如何安装 Oracle</code><a href="https://www.cnblogs.com/liuhongfeng/p/5267549.html" target="_blank" rel="noopener">Windows下Oracle安装图解—-oracle-win-64-11g 详细安装步骤</a></li>
+<li><code>未安装客户端</code> <a href="https://blog.csdn.net/huoyunshen88/article/details/26725045" target="_blank" rel="noopener">TOAD OR PLSQL 连接 ORACLE ，Toad报“No valid Oracle Client found”</a></li>
+<li><code>无效 Origin-Others</code><a href="https://blog.csdn.net/qq_35396447/article/details/78072218" target="_blank" rel="noopener">oracle配置监听问题——注册表中没有OracleOraDb11g_home1TNSListener</a></li>
+<li><code>删除注册表项后重启</code> <a href="https://blog.csdn.net/weixin_37817685/article/details/60877927" target="_blank" rel="noopener">找不到OracleMTSRecoveryService</a></li>
+<li><code>忽略</code>[orapwd.exe Unable to find error file”%ORACLE_HOME%”\RDBMS\opw]</li>
+<li><code>忽略</code>INS-20802 Oracle Net Configuration Assistant 失败。<a href="https://blog.csdn.net/typa01_kk/article/details/40452647" target="_blank" rel="noopener">信息: Oracle Database Configuration Assistant 失败</a></li>
+</ul>
+</li>
+</ul>
+<p><code>GK: EF模型 和 ORM 的区别 -CSDN</code><br><a href="https://www.cnblogs.com/yaopengfei/p/9196962.html" target="_blank" rel="noopener">ORM系列之Entity FrameWork详解</a></p>
+<p><img src="/assets/2019-07-02-ABP-Learning/没问题可删.png" alt="没问题可删"></p>
+<p><img src="/assets/2019-07-02-ABP-Learning/客户端.png" alt="客户端"></p>
+<p><img src="/assets/2019-07-02-ABP-Learning/IMG_20190624_160350.jpg" alt="toad-1-安装时只用选toad-for-oracle"></p>
+<p><img src="/assets/2019-07-02-ABP-Learning/IMG_20190624_165014.jpg" alt="toad-2-环境配置"></p>
+<p><img src="/assets/2019-07-02-ABP-Learning/IMG_20190624_171722.jpg" alt="toad-3-貌似正常的环境"></p>
+<h1 id="C-编程入门"><a href="#C-编程入门" class="headerlink" title="C#编程入门"></a>C#编程入门</h1><p><code>有编程基础的话</code>这一部分 基本可以边上手边学的</p>
+<p><code>SK: Essential C# C# &quot;本质论&quot; filetype:pdf -博客 -baidu</code><br>    <a href="https://book.douban.com/subject/5243513/" target="_blank" rel="noopener">C#本质论</a></p>
+<p><a href="https://docs.microsoft.com/zh-cn/dotnet/csharp/language-reference/builtin-types/integral-numeric-types" target="_blank" rel="noopener">整型数值类型（C# 参考）</a><br><a href="https://www.cnblogs.com/EthanCai/archive/2008/07/06/1237012.html" target="_blank" rel="noopener">避免对C#中float，double，decimal的错误理解</a></p>
+<p><code>SK: Google 搜索 问号</code><br><a href="http://www.kbase101.com/question/51213.html" target="_blank" rel="noopener">如何谷歌一个问号</a><br><a href="https://zhuanlan.zhihu.com/p/22161675" target="_blank" rel="noopener">Google Hacking————你真的会用Google吗？</a></p>
+<blockquote>
+<p>“+”强制搜索其后的一个单词，可以取消之前说的Google对常用单词的忽视(AND逻辑)，<br>但是大部分常用英文符号(如问号，句号，逗号等)无法成为搜索关键字，加强制也不行；</p>
+</blockquote>
+<p>SO <code>SK: &quot;decimal?&quot;</code>是不行的, 要使用<code>SK: decimal 问号</code><br><a href="https://www.cnblogs.com/darrenji/p/3824857.html" target="_blank" rel="noopener">C#中,为什么在值类型后面加问号</a><br>decimal?是可空类型就是可以将值设置为Null，decimal 不能设置为null<br>另见<a href="https://linq2db.github.io/api/LinqToDB.LinqExtensions.html" target="_blank" rel="noopener">Class LinqExtensions: InsertWithDecimalIdentity</a></p>
+<h1 id="DotNet入门"><a href="#DotNet入门" class="headerlink" title="DotNet入门"></a>DotNet入门</h1><p><strong>背书</strong></p>
+<blockquote>
+<p><a href="https://zh.wikipedia.org/wiki/ASP.NET" target="_blank" rel="noopener">ASP.Net -Wiki</a>是由微软在.NET Framework框架中所提供，开发Web应用程序的<strong>类库</strong>，<br>封装在System.Web.dll文件中，显露出System.Web名字空间，并提供ASP.NET网页处理、扩展以及HTTP通道的应用程序与通信处理等工作，以及Web Service的基础架构。<br>ASP.NET是ASP技术的后继者，但它的发展性要比ASP技术要强大许多。</p>
+</blockquote>
+<blockquote>
+<p>为了因应云端化所诱发的多作业平台集成与开发能力，微软特别开发一个新一代的 ASP.NET，称为 ASP.NET vNext，<br>并于 2014 年命名为 ASP.NET 5，但随后于 2016 年将它更名为 <strong>ASP.NET Core</strong>，<br>由于架构上的差异颇大，因此未来 ASP.NET 与 ASP.NET Core 将是分别发展与维护，<br>Windows 平台的 ASP.NET 4.6 以上版本仍维持 Windows Only，但 ASP.NET Core 则是具有跨平台 (Windows, Mac OSX 与 Linux) 的能力。</p>
+</blockquote>
+<h2 id="遇见的很多问题及其大致解决思路"><a href="#遇见的很多问题及其大致解决思路" class="headerlink" title="遇见的很多问题及其大致解决思路"></a>遇见的很多问题及其大致解决思路</h2><p><code>大都不是什么大不了的问题</code></p>
+<p><a href="https://docs.microsoft.com/zh-CN/dotnet/csharp/language-reference/keywords/virtual" target="_blank" rel="noopener">virtual（C# 参考）</a></p>
+<p><code>SK: Visual Studio 2017 C# 代码高亮 using &quot;错误&quot; -CSDN -程序错误 -插件 -更新 -调试</code><br>    <a href="https://docs.microsoft.com/zh-cn/dotnet/csharp/language-reference/operators/null-coalescing-operator" target="_blank" rel="noopener">?? 运算符（C# 参考）</a></p>
+<p><code>SK: VS2017 ASP.NET NUGET 程序集引用 報紅 但是程序可以正常運行</code><br>    <a href="https://blog.csdn.net/u012751272/article/details/79400008" target="_blank" rel="noopener">解决.NET 项目引用类库出现黄色警告</a><br>    <a href="https://blog.csdn.net/weixin_33738555/article/details/85962141" target="_blank" rel="noopener">【Visual Studio】项目的引用显示黄色叹号</a></p>
+<p><code>SK: 如何 更改所引用的工程文件的.Net版本 感叹号</code><br>    <a href="http://www.voidcn.com/article/p-rmbmlvkk-rh.html" target="_blank" rel="noopener">C# 工程中引用出现感叹号</a><br>    <a href="https://blog.csdn.net/CrackLibby/article/details/47665745" target="_blank" rel="noopener">C# 工程中引用出现感叹号</a><br>    <a href="https://blog.csdn.net/jl1134069094/article/details/51151429" target="_blank" rel="noopener">VS中修改.net版本</a></p>
+<p><code>SK: Microsoft.AI.Web 黄色叹号</code><br>    <a href="http://landcareweb.com/questions/25321/wu-fa-jia-zai-wen-jian-huo-cheng-xu-ji-microsoft-ai-web-huo-qi-yi-lai-xiang-zhi-yi-gai-xi-tong-zhao-bu-dao-zhi-ding-de-wen-jian" target="_blank" rel="noopener">无法加载文件或程序集“Microsoft.AI.Web”或其依赖项之一。该系统找不到指定的文件</a></p>
+<p><code>SK: 未能找到类型或命名空间名 &quot;AutoMap From&quot;</code><br>    <a href="https://www.cnblogs.com/xdot/p/10432966.html" target="_blank" rel="noopener">VS的ASP.NET项目中cshtml关键词出错 红线，当前上下文中不存在名称</a><br>    <a href="https://codeday.me/bug/20170611/24030.html" target="_blank" rel="noopener">c# – 命名空间不被识别(即使它在那里)</a><br>    <a href="https://blog.csdn.net/Mingyueyixi/article/details/54415902" target="_blank" rel="noopener">解决Visual studio编写C#时“未能找到类型名称或命名空间名称XXX…”错误</a></p>
+<p><code>SK: System.BadImageFormatException: 未能加载文件或程序集 或它的某一个依赖项。试图加载格式不正确的程序。。</code><br>    ‘InstallUtil’ 不是内部或外部命令，也不是可运行的程序<br>    “vcvars32.bat”<br>    <a href="https://docs.microsoft.com/zh-CN/dotnet/framework/tools/installutil-exe-installer-tool" target="_blank" rel="noopener">Installutil.exe（安装程序工具）</a><br>    <a href="https://www.cnblogs.com/autumn/p/3575008.html" target="_blank" rel="noopener">未能加载文件或程序集“XXXXXX”或它的某一个依赖项。试图加载格式不正确的程序。</a></p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">vsCommandPrompt32(应该使用项目目录下边自带的<span class="number">233</span>)</span><br><span class="line">: 然后出现类似的内容</span><br><span class="line">&gt;"C:\Program Files (x86)\Microsoft Visual Studio\<span class="number">2017</span>\Professional\VC\Auxiliary\Build\vcvars32.bat"</span><br><span class="line">**********************************************************************</span><br><span class="line">** Visual Studio <span class="number">2017</span> Developer Command Prompt v15.<span class="number">8</span>.<span class="number">0</span></span><br><span class="line">** Copyright (c) <span class="number">2017</span> Microsoft Corporation</span><br><span class="line">**********************************************************************</span><br><span class="line">[vcvarsall.bat] Environment initialized <span class="keyword">for</span>: 'x86'</span><br><span class="line"></span><br><span class="line">: 之后就可以使用词命令安装服务了</span><br><span class="line">InstallUtil ./WinService.exe</span><br></pre></td></tr></table></figure>
+<p><code>SK: X ORA-28547：connection to server failed，probable Oracle Net admin error</code><br><a href="https://blog.csdn.net/gaoying_blogs/article/details/45440797" target="_blank" rel="noopener">用Navicat连接Oracle数据库时报错ORA-28547:connection to server failed, probable Oracle Net admin error - 不忘初心 - CSDN博客</a></p>
+<p><code>SK: Navicat 连接 ORACLE</code><br><a href="https://blog.csdn.net/zjx86320/article/details/49464251" target="_blank" rel="noopener">Navicat Premium 连接Oracle 数据库（图文教程） - 周江霄 - CSDN博客</a></p>
+<p><code>SK: 如何 测试 IIS Express Web API postman</code><br>    <a href="https://www.toutiao.com/i6489186032729195021/" target="_blank" rel="noopener">如何在ASP.NET Core Web API测试中使用Postman</a><br>    <a href="https://blog.walterlv.com/post/use-postman-to-debug-asp-net-core-api.html" target="_blank" rel="noopener">使用 Postman 调试 ASP.NET Core 开发的 API - walterlv</a><br>    <a href="https://docs.microsoft.com/zh-cn/aspnet/core/tutorials/first-web-api?view=aspnetcore-2.2&amp;tabs=visual-studio" target="_blank" rel="noopener">教程：使用 ASP.NET Core MVC 创建 Web API</a></p>
+<p><code>SK: 当前不会命中断点 还未</code><br>    <a href="https://blog.csdn.net/shakspers/article/details/78978017" target="_blank" rel="noopener">VS2017调试代码显示“当前无法命中断点，还没有为该文档加载任何符号”</a><br>    <a href="https://www.cnblogs.com/MigCoder/p/3368319.html" target="_blank" rel="noopener">Visual Studio 当前不会命中断点的问题</a><br>PS: <code>只改过部分配置 实在乱掉可以参考admin的VS配置 或还原</code></p>
+<p><a href="https://www.cnblogs.com/190196539/archive/2011/12/03/2272861.html" target="_blank" rel="noopener">SK 在证书存储区中找不到清单签名证书 </a></p>
+<p><code>执行interfaceRpo.Get遇到异常(莫非是由于没有实现..?)</code><a href="https://www.cnblogs.com/senyier/p/7298759.html" target="_blank" rel="noopener">“System.Reflection.AmbiguousMatchException”类型的异常在 mscorlib.dll 中发生</a></p>
+<h2 id="ABP框架"><a href="#ABP框架" class="headerlink" title="ABP框架"></a>ABP框架</h2><p><a href="https://www.processon.com/diagraming/5d19728ce4b014412aa8ddab" target="_blank" rel="noopener">ABP简单架构</a></p>
+<p><code>强调</code>对数据进行变动的是业务(Business), 仓储只实现查询, 数据变动已经被基础的仓储接口实现</p>
+<h3 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h3><p><code>SK: &quot;IRepository&quot; docs 教程</code><br><a href="https://www.cnblogs.com/yabu007/p/8134792.html" target="_blank" rel="noopener">ABP 教程文档 1-1 手把手引进门之 AngularJs, ASP.NET MVC, Web API 和 EntityFramework（官方教程翻译版 版本3.2.5）含学习资料</a><br><a href="https://docs.microsoft.com/zh-CN/dotnet/standard/microservices-architecture/microservice-ddd-cqrs-patterns/infrastructure-persistence-layer-design" target="_blank" rel="noopener">设计基础结构持久性层</a></p>
+<p><code>SK: IRepository Query接口 用法</code><br><a href="https://www.lanhusoft.com/Article/637.html" target="_blank" rel="noopener">NopCommerce源码架构详解–EF数据访问实例详解</a><br><a href="https://www.cnblogs.com/gaochundong/archive/2013/06/06/entityframework_usage_repository_unitofwork.html" target="_blank" rel="noopener">EntityFramework用法探索（四）Repository和UnitOfWork - 匠心十年 - 博客园</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">int cnt = db.GetTable&lt;ORM_ENTITY_NAME&gt;().Where(p =&gt; p.id == id).Delete();</span><br><span class="line">return cnt &gt; 0;</span><br></pre></td></tr></table></figure>
+<p><code>SK: IRepository Get Single 区别</code><br><a href="https://www.cnblogs.com/JustRun1983/p/3307774.html" target="_blank" rel="noopener">分享基于Entity Framework的Repository模式设计（附源码）</a></p>
+<p><code>SK: &quot;System.Reflection.AmbiguousMatchException&quot; (位于 mscorlib.dll 中</code><br><a href="https://docs.microsoft.com/zh-cn/dotnet/api/system.reflection.ambiguousmatchexception.-ctor?redirectedfrom=MSDN&amp;view=netframework-4.8#System_Reflection_AmbiguousMatchException__ctor_System_String_System_Exception_" target="_blank" rel="noopener">微软DotNet文档  AmbiguousMatchException Constructors </a></p>
+<hr>
+<h3 id="单元测试"><a href="#单元测试" class="headerlink" title="单元测试"></a>单元测试</h3><p><code>吐槽</code>安装 xunit生成插件后即可自动创建模板(当然, 得改改)<br><code>吐槽</code>另外 无法直接对Controller进行测试(估计需要开启服务, 且要引入HTTP以及测试的内容所处的项目 实际上项目跑起来后并不能执行测试)<br><code>吐槽</code>测试Servise又需要登录…</p>
+<p><a href="https://www.jianshu.com/p/77f4f9175028" target="_blank" rel="noopener">这应该是postman最详细的中文使用教程了</a><br><code>SK: Postman 测试 文件接口</code><a href="https://www.cnblogs.com/shimh/p/6094410.html" target="_blank" rel="noopener">postman测试上传文件</a></p>
+<p><code>SK: xunit Microsoft.VisualStudio.TestTools.UnitTesting 区别</code><a href="https://www.cnblogs.com/zhaopei/p/UnitTesting.html" target="_blank" rel="noopener">C#单元测试，带你快速入门</a><br><a href="https://docs.microsoft.com/zh-cn/visualstudio/test/install-third-party-unit-test-frameworks?view=vs-2019" target="_blank" rel="noopener">安装单元测试框架</a><br><a href="https://docs.microsoft.com/zh-cn/visualstudio/test/live-unit-testing-intro?view=vs-2019" target="_blank" rel="noopener">Live Unit Testing 简介</a><br><code>SK VS 右键创建 Xunit 单元测试</code><br>    <a href="https://www.cnblogs.com/cgzl/p/8283610.html" target="_blank" rel="noopener">使用xUnit为.net core程序进行单元测试(1)</a><br>    <a href="https://jingyan.baidu.com/article/6b97984dd9adb31ca2b0bfe0.html" target="_blank" rel="noopener">Visual Studio 2017 优雅单元测试</a></p>
+<p><a href="http://www.ituring.com.cn/article/8242" target="_blank" rel="noopener">代码质量随想录（六）用心写好注释</a><br><a href="https://codecafe1984.wordpress.com/2012/08/04/thinking_in_code_quality_6_write_elegant_comments_zh_cn/" target="_blank" rel="noopener">代码质量随想录（六）用心写好注释</a></p>
+<p>在持久仓库调用</p>
+<ol>
+<li><a href="https://docs.microsoft.com/zh-CN/dotnet/api/system.data.linq.datacontext.gettable?view=netframework-4.8" target="_blank" rel="noopener">DataContext.GetTable<entitytype> Method</entitytype></a></li>
+<li>Query<entitytype></entitytype></li>
+<li>Excute<entitytype></entitytype></li>
+</ol>
+<p>当<entitytype>与仓库实际的EntityType不符时(即直接执行任何非声明仓库的sql语句)<strong>Xunit单元测试</strong>都会出现以下类似的错误<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">System.Reflection.TargetInvocationException</span><br><span class="line">System.UnauthorizedAccessException</span><br></pre></td></tr></table></figure></entitytype></p>
+<p>使用以下语句后可以保证<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">// IUnitOfWorkManager中IUnitOfWorkCompleteHandle Begin();</span><br><span class="line">using (var uow = _unitOfWork.Begin())</span><br><span class="line">&#123;</span><br><span class="line">    var result = _testerService.TestFun(entity);</span><br><span class="line">    Assert.True(result != null, &quot;测试成功!&quot;);</span><br><span class="line">    // IUnitOfWorkCompleteHandle中void Complete();</span><br><span class="line">    uow.Complete();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><code>SK: ABP 联查 IRepository</code></p>
+<ul>
+<li><code>无果</code><a href="https://www.cnblogs.com/alunchen/p/6835297.html" target="_blank" rel="noopener">ABP 数据库 – ABP&amp;EF中的多表、关联查询</a>这个类似JPA的语法</li>
+</ul>
+<p><code>SK: IUnitOfWorkCompleteHandle Begin()</code><a href="https://www.bbsmax.com/A/kmzLPjobzG/" target="_blank" rel="noopener">ABP拦截器之UnitOfWorkRegistrar(二)</a></p>
+<blockquote>
+<p>如果一个带工作单元的方法调用了另外一个带工作单元的方法的时候，那么这两个方法是会共享相同的连接和事物的，并且第一个调用的方法管理这个工作单元，第二个进行复用，所以上面的这个ICurrentUnitOfWorkProvider接口主要是为了解决多个工作单元互相调用的问题。<br><a href="https://blog.csdn.net/guo13313/article/details/50608080" target="_blank" rel="noopener">VS中如何添加自定义 代码片段 </a></p>
+</blockquote>
+<p>单元测试报告显示<br><code>System.InvalidOperationException : 序列不包含任何元素</code><br>    这个貌似是由于没有查询到元素(但加上后面的关联单元语句后会返回null)<br><code>Message: System.NullReferenceException : 未将对象引用设置到对象的实例。</code><br>    使用了Single方法<code>Gets exactly one entity with given predicate. Throws exception if no entity or more than one entity.</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public class NameRepository : RepositoryBase&lt;Name_Table&gt;, INameRepository&#123;</span><br><span class="line">    // implement</span><br><span class="line">&#125;</span><br><span class="line">// Name必须相同, 否则会</span><br><span class="line">Message: Castle.MicroKernel.Handlers.HandlerException : Can&apos;t create component &apos;Sample.Abp.Service.NameService&apos; as it has dependencies to be satisfied.</span><br><span class="line"></span><br><span class="line">&apos;Sample.Abp.Service.NameService&apos; is waiting for the following dependencies:</span><br><span class="line">- Service &apos;Sample.Abp.IRepositories.NameRepository&apos; which was not registered.</span><br></pre></td></tr></table></figure>
+<p><code>SK: C# 类似 org.springframework.beans BeanUtils.copyProperties 的方法</code><a href="https://blog.csdn.net/q649381130/article/details/78064650" target="_blank" rel="noopener">慎用BeanUtils的对象拷贝方法</a></p>
+<h4 id="初始化测试资源"><a href="#初始化测试资源" class="headerlink" title="初始化测试资源"></a>初始化测试资源</h4><p><a href="https://www.cnblogs.com/liuning8023/archive/2012/07/22/2603819.html" target="_blank" rel="noopener">C# 析构函数（Destructor）和终结器（Finalizer）——托管资源的释放</a><br>-&gt;<code>官方</code><a href="https://docs.microsoft.com/zh-cn/dotnet/csharp/programming-guide/classes-and-structs/destructors" target="_blank" rel="noopener">终结器（C# 编程指南）</a><br><strong>我们只能知道GC会回收这两个对象，但在.NET中，由于GC的存在，究竟何时调用析构函数我们是不能确认的。 </strong></p>
+<p><a href="https://blog.csdn.net/cpcpc/article/details/6185946" target="_blank" rel="noopener">.NET 单元测试样例 (NUnit工具)</a></p>
+<h4 id="释放资源"><a href="#释放资源" class="headerlink" title="释放资源"></a>释放资源</h4><p><code>Xunit.Abstractions.IAfterTestFinished;</code><br><code>SK: XUnit After Test Finished</code><a href="https://stackoverflow.com/questions/13829737/run-code-once-before-and-after-all-tests-in-xunit-net" target="_blank" rel="noopener">Run code once before and after ALL tests in xUnit.net</a><br><code>SK: C# lambda 表达式</code><a href="https://docs.microsoft.com/zh-CN/dotnet/csharp/programming-guide/statements-expressions-operators/lambda-expressions" target="_blank" rel="noopener">Lambda 表达式（C# 编程指南）</a></p>
+<p>最后发现 官方的文档中:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">//</span><br><span class="line">// 摘要:</span><br><span class="line">//     提供一种用于释放非托管资源的机制。 若要浏览此类型的.NET Framework 源代码，请参阅Reference Source。</span><br><span class="line">[ComVisible(true)]</span><br><span class="line">public interface IDisposable</span><br><span class="line">&#123;</span><br><span class="line">        //</span><br><span class="line">        // 摘要:</span><br><span class="line">        //     执行与释放或重置非托管资源关联的应用程序定义的任务。</span><br><span class="line">        void Dispose();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>于是只需要重载Dispose方法就ok<br><code>xunit错误也会执行 其他没试过</code></p>
+<p>最后:<br><a href="https://codeday.me/bug/20180822/226609.html" target="_blank" rel="noopener">c# – 使用XUnit断言异常</a></p>
+<hr>
+<h3 id="IIS"><a href="#IIS" class="headerlink" title="IIS"></a>IIS</h3><p><code>SK: 未找到WAS 服务</code><a href="https://jingyan.baidu.com/article/15622f2410f770fdfcbea5d3.html" target="_blank" rel="noopener">在计算机“.”上没有找到WAS服务</a><br><a href="https://www.cnblogs.com/ggll611928/p/6525202.html" target="_blank" rel="noopener">HTTP 错误 404.0 - Not Found</a></p>
+<p><code>快捷键在调试选项下可查看</code></p>
+<p><a href="https://q.cnblogs.com/q/90874/" target="_blank" rel="noopener">.net core 附加到进程调试<em>已解决</em>博问_博客园</a></p>
+<blockquote>
+<p>依然是可以的，只是进程不在是原来的w3wp进程了，而是dotnet.exe。</p>
+<p>不过最好建议使用IIS进行反向代理，这样就可以通过进程的<code>User Name</code>明显的看到是在哪个dotnet.exe进程中了。</p>
+</blockquote>
+
+      </div>
+      <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="https://sailhe.github.io">SailHe</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="https://sailhe.github.io/2019/07/02/DotNet全家桶与Oracle数据库/">https://sailhe.github.io/2019/07/02/DotNet全家桶与Oracle数据库/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span><a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+      <footer class="post-footer">
+        <div class="post-tags">
+            <a href="/tags/流水帐/">流水帐</a>
+            </div>
+        
+        <nav class="post-nav"><a class="prev" href="/2019/07/05/关于FireFox与Chrome浏览器的日常使用/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">关于FireFox与Chrome浏览器的日常使用</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    <a class="next" href="/2019/06/17/实用性最强的设计模式/">
+        <span class="next-text nav-default">实用性最强的设计模式</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    </nav></footer>
+    </article></div><div class="comments" id="comments"></div></div>
+      </main>
+
+      <footer id="footer" class="footer"><div class="social-links"><a href="mailto:shell.sailhe@gmail.com" class="iconfont icon-email" title="email"></a>
+        <a href="https://github.com/sailhe" class="iconfont icon-github" title="github"></a>
+        <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    </div><div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://hexo.io/">Hexo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">&copy;2018 - 2024<span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">SailHe</span>
+  </span>
+</div>
+</footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    <!-- >
+  <div class="adventure-island-container">
+    <div class="clouds">
+        <div class="bg"></div>
+    </div>
+    <div class="mountains">
+        <div class="bg"></div>
+    </div>
+    <div class="trees">
+        <div class="bg"></div>
+    </div>
+    <div class="bushes">
+        <div class="bg"></div>
+    </div>
+    <div class="lawn">
+        <div class="bg"></div>
+    </div>
+    <div class="scroll">
+        <div class="bg"></div>
+    </div>
+</div>
+<div class="cat-main">
+    <span class="stand"></span>
+    <div class="cat">
+        <div class="body"></div>
+        <div class="head">
+            <div class="ear"></div>
+            <div class="ear"></div>
+        </div>
+        <div class="face">
+            <div class="nose"></div>
+            <div class="whisker-container">
+                <div class="whisker"></div>
+                <div class="whisker"></div>
+            </div>
+            <div class="whisker-container">
+                <div class="whisker"></div>
+                <div class="whisker"></div>
+            </div>
+        </div>
+        <div class="tail-container">
+            <div class="tail">
+                <div class="tail">
+                    <div class="tail">
+                        <div class="tail">
+                            <div class="tail">
+                                <div class="tail">
+                                    <div class="tail"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div><!-- Quantity should be the same in Sass-->
+<div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+</div><script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/lib/pjax/jquery.pjax.min.js"></script>
+  <script type="text/javascript" src="/lib/nprogress/nprogress.min.js"></script>
+  <script type="text/javascript" src="/js/src/even.js?v=2.11.0"></script>
+</body>
+</html>

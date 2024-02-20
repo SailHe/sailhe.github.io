@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head><meta name="generator" content="Hexo 3.8.0"><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+<meta name="theme-color" content="#f8f5ec">
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+<meta name="description" content="Idea的一些使用小贴士"><meta name="keywords" content="program,life"><link rel="alternate" href="/atom.xml" title="SailHe's Cyber Memory(Core)"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.11.0">
+<link rel="canonical" href="https://sailhe.github.io/2018/11/09/Idea-Tips/">
+
+<link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css"><link rel="stylesheet" type="text/css" href="/lib/nprogress/nprogress.min.css">
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.11.0">
+
+<script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+<script>
+  window.config = {"leancloud":{"app_id":null,"app_key":null},"toc":true,"fancybox":true,"pjax":true,"latex":false};
+</script>
+
+    <title>Idea-Tips - SailHe's Cyber Memory(Core)</title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">SailHe's Cyber Memory(Core)</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list"><a href="/">
+        <li class="mobile-menu-item">首页
+          </li>
+      </a><a href="/archives/">
+        <li class="mobile-menu-item">归档
+          </li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签
+          </li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类
+          </li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">关于
+          </li>
+      </a></ul>
+</nav>
+<div class="container background-transparent" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">SailHe's Cyber Memory(Core)</a>
+</div>
+
+<nav class="site-navbar"><ul id="menu" class="menu"><li class="menu-item">
+          <a class="menu-item-link" href="/">
+            首页
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            归档
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/tags/">
+            标签
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/categories/">
+            分类
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/about/">
+            关于
+            </a>
+        </li>
+      </ul></nav>
+</header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper transform-shadow">
+          <div id="content" class="content"><article class="post">
+    <header class="post-header">
+      <h1 class="post-title">Idea-Tips
+        </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2018-11-09
+        </span><span class="post-category">
+            <a href="/categories/Induction/">Induction</a>
+            </span>
+        </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Tricks"><span class="toc-text">Tricks</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Idea-Web-Module"><span class="toc-text">Idea Web Module</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Create"><span class="toc-text">Create</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#PS"><span class="toc-text">PS</span></a></li></ol></li></ol></li></ol>
+    </div>
+  </div><div class="post-content"><p><a href="https://blog.csdn.net/fengchao2016/article/details/72957945" target="_blank" rel="noopener">IDEA忽略文件，防止git提交不想提交的文件的探索</a></p>
+<p><a href="https://www.cnblogs.com/carsonzhu/p/5468223.html" target="_blank" rel="noopener">IDEA创建项目以及项目中的文件介绍</a></p>
+<h1 id="Tricks"><a href="#Tricks" class="headerlink" title="Tricks"></a>Tricks</h1><ol>
+<li>out存放的是该项目下所有Module(模块)的编译结果。</li>
+<li>target存放的是单个Module的编译结果。</li>
+<li>如果为某个Module指定了编译结果的路径，则不会再输出到out文件夹中了。</li>
+<li>你在Project Structure中的Project选项卡中可以设置Project compiler output的目录。</li>
+<li>在Modules中选择某一个模块后，在右侧的Paths选项卡中可以设置该模块的Compiler output目录。</li>
+<li>项目重命名需要同时做以下三件事: 在项目名上重构名称为希望的名称; 使用操作系统更改文件夹名; 删除.idea配置文件使其重新扫描</li>
+<li>如果想测试当前项目是否能够在其他人的机器上使用, 最简单的办法自然是重拉(clone)一遍; 更简便的方法是删除.idea文件 然后重进项目</li>
+</ol>
+<h1 id="Idea-Web-Module"><a href="#Idea-Web-Module" class="headerlink" title="Idea Web Module"></a>Idea Web Module</h1><p>demo-for-IdeaModule</p>
+<h2 id="Create"><a href="#Create" class="headerlink" title="Create"></a>Create</h2><p><code>试了近两天, 创建,删除了超过20次项目后得出这么个结论</code></p>
+<ol>
+<li><p>一个maven父项目同时出现多个基于web框架的maven子项目时会出现冲突. (配置好tomcat后只能使webapp目录的子项目正常运行) 比如这样</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">jsp\web</span><br><span class="line">jsp\webapp\src\main\webapp</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>maven项目及其maven web框架子模块的创建 <a href="https://github.com/SailHe/demo-for-webapp-module/tree/creater" target="_blank" rel="noopener">参考</a>(至少这边没有成功运行web目录的jsp)</p>
+</li>
+<li>仅web目录及配置细节<a href="https://github.com/SailHe/demo-for-web-module" target="_blank" rel="noopener">参考</a></li>
+<li>仅webapp及配置细节<a href="https://github.com/SailHe/demo-for-webapp-module" target="_blank" rel="noopener">参考</a></li>
+<li>应用<a href="https://github.com/SailHe/demo-for" target="_blank" rel="noopener">参考</a></li>
+<li>以上实践<a href="https://blog.csdn.net/u012702547/article/details/77431765" target="_blank" rel="noopener">参考</a></li>
+</ol>
+<h3 id="PS"><a href="#PS" class="headerlink" title="PS"></a>PS</h3><ol>
+<li>Add As Maven 和 Framework 的点击顺序无所谓</li>
+<li>关键在于如果是默认的web目录, 那么在点击Framework后会配置一个父项目的web(其弹框信息中也可看出), 若不慎点错也可以自行删除</li>
+<li>maven web的pom.xml中需要添加这个, 位置无所谓<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">packaging</span>&gt;</span>war<span class="tag">&lt;/<span class="name">packaging</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ul>
+<li>Github Gist 2018-11-09 22:23:00</li>
+<li>更新: 2019-05-19 22:21:04</li>
+</ul>
+
+      </div>
+      <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="https://sailhe.github.io">SailHe</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="https://sailhe.github.io/2018/11/09/Idea-Tips/">https://sailhe.github.io/2018/11/09/Idea-Tips/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span><a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+      <footer class="post-footer">
+        <div class="post-tags">
+            <a href="/tags/ESR/">ESR</a>
+            <a href="/tags/IntelliJ-IDEA/">IntelliJ-IDEA</a>
+            </div>
+        
+        <nav class="post-nav"><a class="prev" href="/2018/12/10/混合编程-拼接数组/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">混合编程-拼接数组</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    <a class="next" href="/2018/11/07/Node-js-Learning/">
+        <span class="next-text nav-default">Node.js-Learning</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    </nav></footer>
+    </article></div><div class="comments" id="comments"></div></div>
+      </main>
+
+      <footer id="footer" class="footer"><div class="social-links"><a href="mailto:shell.sailhe@gmail.com" class="iconfont icon-email" title="email"></a>
+        <a href="https://github.com/sailhe" class="iconfont icon-github" title="github"></a>
+        <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    </div><div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://hexo.io/">Hexo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">&copy;2018 - 2024<span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">SailHe</span>
+  </span>
+</div>
+</footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    <!-- >
+  <div class="adventure-island-container">
+    <div class="clouds">
+        <div class="bg"></div>
+    </div>
+    <div class="mountains">
+        <div class="bg"></div>
+    </div>
+    <div class="trees">
+        <div class="bg"></div>
+    </div>
+    <div class="bushes">
+        <div class="bg"></div>
+    </div>
+    <div class="lawn">
+        <div class="bg"></div>
+    </div>
+    <div class="scroll">
+        <div class="bg"></div>
+    </div>
+</div>
+<div class="cat-main">
+    <span class="stand"></span>
+    <div class="cat">
+        <div class="body"></div>
+        <div class="head">
+            <div class="ear"></div>
+            <div class="ear"></div>
+        </div>
+        <div class="face">
+            <div class="nose"></div>
+            <div class="whisker-container">
+                <div class="whisker"></div>
+                <div class="whisker"></div>
+            </div>
+            <div class="whisker-container">
+                <div class="whisker"></div>
+                <div class="whisker"></div>
+            </div>
+        </div>
+        <div class="tail-container">
+            <div class="tail">
+                <div class="tail">
+                    <div class="tail">
+                        <div class="tail">
+                            <div class="tail">
+                                <div class="tail">
+                                    <div class="tail"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div><!-- Quantity should be the same in Sass-->
+<div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+</div><script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/lib/pjax/jquery.pjax.min.js"></script>
+  <script type="text/javascript" src="/lib/nprogress/nprogress.min.js"></script>
+  <script type="text/javascript" src="/js/src/even.js?v=2.11.0"></script>
+</body>
+</html>

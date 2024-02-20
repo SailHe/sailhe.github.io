@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head><meta name="generator" content="Hexo 3.8.0"><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+<meta name="theme-color" content="#f8f5ec">
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+<meta name="description" content="记录学习Servlet相关的知识的情况"><meta name="keywords" content="program,life"><link rel="alternate" href="/atom.xml" title="SailHe's Cyber Memory(Core)"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.11.0">
+<link rel="canonical" href="https://sailhe.github.io/2019/06/16/古老的Servlet技术/">
+
+<link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css"><link rel="stylesheet" type="text/css" href="/lib/nprogress/nprogress.min.css">
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.11.0">
+
+<script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+<script>
+  window.config = {"leancloud":{"app_id":null,"app_key":null},"toc":true,"fancybox":true,"pjax":true,"latex":false};
+</script>
+
+    <title>古老的Servlet技术 - SailHe's Cyber Memory(Core)</title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">SailHe's Cyber Memory(Core)</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list"><a href="/">
+        <li class="mobile-menu-item">首页
+          </li>
+      </a><a href="/archives/">
+        <li class="mobile-menu-item">归档
+          </li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签
+          </li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类
+          </li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">关于
+          </li>
+      </a></ul>
+</nav>
+<div class="container background-transparent" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">SailHe's Cyber Memory(Core)</a>
+</div>
+
+<nav class="site-navbar"><ul id="menu" class="menu"><li class="menu-item">
+          <a class="menu-item-link" href="/">
+            首页
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            归档
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/tags/">
+            标签
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/categories/">
+            分类
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/about/">
+            关于
+            </a>
+        </li>
+      </ul></nav>
+</header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper transform-shadow">
+          <div id="content" class="content"><article class="post">
+    <header class="post-header">
+      <h1 class="post-title">古老的Servlet技术
+        </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2019-06-16
+        </span><span class="post-category">
+            <a href="/categories/Experience/">Experience</a>
+            </span>
+        </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#基础概念"><span class="toc-text">基础概念</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Java-Servlet"><span class="toc-text">Java Servlet</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Tomcat"><span class="toc-text">Tomcat</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Links"><span class="toc-text">Links</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#PS"><span class="toc-text">PS</span></a></li></ol></li></ol>
+    </div>
+  </div><div class="post-content"><p>已经是上世纪90年代的技术了, 但想要学习Spring全家桶还得学.</p>
+<h1 id="基础概念"><a href="#基础概念" class="headerlink" title="基础概念"></a>基础概念</h1><p><a href="https://zh.wikipedia.org/wiki/JavaBeans" target="_blank" rel="noopener">JavaBeans</a>是Java中一种特殊的类，可以将多个对象封装到一个对象（bean）中。特点是<strong>可序列化</strong>, <strong>提供无参构造器</strong>, <strong>提供getter方法和setter方法</strong>访问对象的属性。名称中的“Bean”是用于Java的<strong>可重用软件组件</strong>的惯用叫法。 </p>
+<p><a href="https://www.jianshu.com/p/f643f1fa1a20" target="_blank" rel="noopener">浅谈model, orm, dao和active record的区别</a></p>
+<p><a href="https://zh.wikipedia.org/wiki/Struts2" target="_blank" rel="noopener">Apache Struts 2</a>是一个用于开发Java EE网络应用程序的开放源代码网页应用程序架构。它利用并延伸了Java Servlet API，鼓励开发者采用MVC架构。 </p>
+<h1 id="Java-Servlet"><a href="#Java-Servlet" class="headerlink" title="Java Servlet"></a><a href="https://zh.wikipedia.org/wiki/Java_Servlet" target="_blank" rel="noopener">Java Servlet</a></h1><blockquote>
+<p>Servlet（Server Applet），全称Java Servlet，未有中文译文。是用Java编写的服务器端程序。<br> 其主要功能在于交互式地浏览和修改数据，生成动态Web内容。狭义的Servlet是指Java语言实现的一个接口，<strong>广义的Servlet是指任何实现了这个Servlet接口的类，一般情况下，人们将Servlet理解为后者。</strong><br> Servlet运行于支持Java的应用服务器中。从实现上讲，Servlet可以响应任何类型的请求，但<strong>绝大多数情况下Servlet只用来扩展基于HTTP协议的Web服务器。</strong><br> 最早支持Servlet标准的是JavaSoft的Java Web Server。此后，一些其它的基于Java的Web服务器开始支持标准的Servlet。<br> <img src="/assets/img/sharding/JSPLife.png" alt="Life of a JSP file"><br> <img src="/assets/img/sharding/ModelViewControllerDiagramZh.png" alt="ModelViewControllerDiagramZh"></p>
+</blockquote>
+<blockquote>
+<p><strong>工作模式</strong><br>  客户端<strong>发送请求</strong>至服务器<br>  服务器<strong>启动</strong>并<strong>调用</strong>Servlet，Servlet根据客户端请求<strong>生成响应内容</strong>并将其传给服务器<br>  服务器将<strong>响应返回</strong>客户端<br>  其他<br>以上引用自标题指向的wiki, 无内容改动, 简而言之, Servlet是用来响应客户端请求然后生成Html的服务端java小程序, 这是Javaweb的根本<br>HttpServlet拓展了Servlet<br>Java服务器页面(<a href="https://zh.wikipedia.org/wiki/JSP" target="_blank" rel="noopener">JSP</a>)又拓展了HttpServlet<br>  其功能是使用HTML的书写格式，在适当的地方加入Java代码片段,<br>  即: Servlet是在服务器端java程序中写Html<br>      JSP是在JSP页面中<code>感觉不能说是前端</code>书写java代码, 类似于JavaScript脚本, 只是后者不能直接调用与服务器相关的内容, 比如文件<code>不是指客户端的文件</code>或数据库</p>
+</blockquote>
+<p><a href="https://www.ibm.com/developerworks/cn/java/j-lo-servlet/index.html#N10085" target="_blank" rel="noopener">Servlet 工作原理解析</a></p>
+<ul>
+<li>Servlet - 接口 - 容器{ Jetty; Tomcat }</li>
+<li>里面有类图; 时序图; 讲解详细, 此处就不再赘述</li>
+</ul>
+<h1 id="Tomcat"><a href="#Tomcat" class="headerlink" title="Tomcat"></a><a href="https://zh.wikipedia.org/zh-cn/Apache_Tomcat" target="_blank" rel="noopener">Tomcat</a></h1><ol>
+<li>SpringBoot 内置 tomcat 依赖</li>
+<li>使用maven打成war包后使用外置tomcat启动</li>
+<li>Tomcat提供了一个Jasper编译器用以将JSP编译成对应的Servlet。 </li>
+</ol>
+<p><code>SK</code>tomcat 启动  war包</p>
+<p><code>SK: 如何 下载 Tomcat 源码</code><a href="https://www.jianshu.com/p/eb9f628cf82b" target="_blank" rel="noopener">死磕tomcat源码(一)之源码下载与导入IDEA</a><br>-&gt; <a href="https://tomcat.apache.org/download-80.cgi" target="_blank" rel="noopener">SRC-8.X</a></p>
+<h1 id="Links"><a href="#Links" class="headerlink" title="Links"></a>Links</h1><p>‘SK: Spring MVC 和 三层架构’<a href="https://juejin.im/post/5929259b44d90400642194f3" target="_blank" rel="noopener">MVC 与三层架构</a></p>
+<ol>
+<li><code>太笼统</code><a href="https://www.jianshu.com/p/a5195a08da3e" target="_blank" rel="noopener">Spring Boot - Tomcat容器部署</a></li>
+<li><a href="https://www.cnblogs.com/laogai/p/4935193.html" target="_blank" rel="noopener">tomcat本地部署war包的方式</a></li>
+<li><a href="https://www.jianshu.com/p/e48ae3b99573" target="_blank" rel="noopener">Tomcat部署java web项目,war包方式</a></li>
+<li><code>SK: SpringMVC 和 Servlet</code><a href="https://juejin.im/post/5a9f3ddb5188255585071151" target="_blank" rel="noopener">Servlet 到 Spring MVC 的简化之路</a></li>
+<li><a href="https://www.jianshu.com/p/3bd8b40400c9" target="_blank" rel="noopener">Spring Framework 整体架构</a></li>
+<li><code>SK: Spring MVC</code><a href="https://www.jianshu.com/p/91a2d0a1e45a" target="_blank" rel="noopener">Spring MVC【入门】就这一篇！</a></li>
+<li><a href="https://www.oschina.net/news/77354/http-get-post-different" target="_blank" rel="noopener">99%的人理解错 HTTP 中 GET 与 POST 的区别</a></li>
+<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Methods/GET" target="_blank" rel="noopener">MDN-GET</a></li>
+<li><a href="https://blog.csdn.net/qq_24452475/article/details/51068258" target="_blank" rel="noopener">Spring、Struts、Hibernate框架之间的关系是什么以及怎么处理</a></li>
+<li><a href="https://www.jianshu.com/p/f1e5f789939c" target="_blank" rel="noopener">关于SpringMVC和Struts2的区别</a></li>
+<li><a href="https://www.jianshu.com/p/3e7e40bde455" target="_blank" rel="noopener">Struts1和Struts2的区别和对比</a></li>
+<li><code>注意 MVC不是分层</code><a href="https://www.ruanyifeng.com/blog/2007/11/mvc.html" target="_blank" rel="noopener">MVC模式</a></li>
+<li><a href="https://blog.csdn.net/zhangli_/article/details/50419783" target="_blank" rel="noopener">注意 MVC不是设计模式 而是架构模式 确切地说是一种理念</a></li>
+<li><a href="http://er.dadaaierer.com/?p=60" target="_blank" rel="noopener">注意 MVC不是框架模式 框架&lt;=!=&gt;架构</a></li>
+</ol>
+<h2 id="PS"><a href="#PS" class="headerlink" title="PS"></a>PS</h2><p>Links[4]中提及的:</p>
+<blockquote>
+<p>模型（Model）：封装了应用程序的数据，通常由POJO类组成<br>Links[6]中提及的:<br>M 代表 模型（Model） 模型是什么呢？ 模型就是数据，就是 dao,bean<br><strong>可能</strong>容易误导读者<br>另外Links[6]中的命名方式也容易使初学者混淆<strong>层</strong>的概念, 比如DAO是<strong>数据访问对象</strong>, 而不是<strong>数据访问层</strong><br>其中还使用了IDEA作为教程新建HelloWorld项目</p>
+</blockquote>
+<p><code>SK: MVC 模型到视图 虚线 意思</code><a href="https://blog.csdn.net/dqjyong/article/details/7697558" target="_blank" rel="noopener">MVC设计模式详解</a><br> -&gt;<br><code>SK: MVC设计模式详解 &quot;C对M&quot; &quot;C对V：Outlet&quot;</code><a href="https://www.cnblogs.com/blogoflzh/p/4684576.html" target="_blank" rel="noopener">iOS学习之MVC设计模式的理解</a><br> -&gt;<br><code>Origin link</code><a href="http://blog.sina.com.cn/s/blog_4a3dcc3901010062.html" target="_blank" rel="noopener">IOS学习之——MVC模式</a></p>
+<p><strong>下边者篇文章对MVC讲解的比较全面且深入, 解释了wiki的那张图</strong><br><code>SK: https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/ModelViewControllerDiagramZh.png/200px-ModelViewControllerDiagramZh.png mvc</code><br><a href="https://www.jianshu.com/p/5e94569a430a" target="_blank" rel="noopener">MVC，MVP，MVVM区别</a><br><code>Origin Link</code><a href="https://www.cnblogs.com/JustRun1983/p/3727560.html" target="_blank" rel="noopener">MVC, MVP, MVVM比较以及区别(下)</a><br><a href="https://www.cnblogs.com/JustRun1983/p/3679827.html" target="_blank" rel="noopener">MVC, MVP, MVVM比较以及区别(上)</a></p>
+<p>类似的搜索套路(但里面的内容需要商榷):<br><code>SK: 设计模式 架构模式</code><a href="https://blog.csdn.net/cxzhq2002/article/details/78160530" target="_blank" rel="noopener">架构模式(Architectural Pattern)、设计模式(Design Pattern)、代码模式(Coding Pattern)</a><br><code>SK: &quot;架构模式(Architectural Pattern)、设计模式(Design Pattern)、代码模式(Coding Pattern)&quot;</code><a href="https://www.cnblogs.com/duanxz/archive/2012/06/05/2536801.html" target="_blank" rel="noopener">架构模式(Architectural Pattern)、设计模式(Design Pattern)、代码模式(Coding Pattern)</a></p>
+<p><a href="https://www.cnblogs.com/HondaHsu/archive/2007/07/03/732754.html" target="_blank" rel="noopener">基于UML和ASP.NET实现三层B/S结构系统开发</a>中提到Domain是<strong>系统中关键的类</strong></p>
+<p>这里提到的三层的一个关系, 并非简单的上层依赖下层的关系, 由于依赖注入的存在, BLL可以使用DAL的接口而不是实现<br><code>不过我始终认为三层架构只能是三层 名字不能再多加层了</code><a href="http://www.dalbll.com/Group/Topic/ArchitecturedDesign/4971" target="_blank" rel="noopener">什么是三层架构？你真的理解分层的意义吗？</a></p>
+<p>这篇表现了 BS的三层{Browser-Server-DataBase} 和 应用三层{UI-BLL-DAL} 的关系, 但其中提到的 dao层 DAO 是对象不是层, DAO 属于 DAL层<br><a href="https://www.cnblogs.com/zhangyinhua/p/7645581.html" target="_blank" rel="noopener">JavaWeb（六）之MVC与三层架构设计</a></p>
+<p><a href="https://wxs.me/2069" target="_blank" rel="noopener">几种常见的软件架构风格介绍</a></p>
+
+      </div>
+      <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="https://sailhe.github.io">SailHe</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="https://sailhe.github.io/2019/06/16/古老的Servlet技术/">https://sailhe.github.io/2019/06/16/古老的Servlet技术/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span><a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+      <footer class="post-footer">
+        <div class="post-tags">
+            <a href="/tags/Servlet/">Servlet</a>
+            </div>
+        
+        <nav class="post-nav"><a class="prev" href="/2019/06/17/实用性最强的设计模式/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">实用性最强的设计模式</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    <a class="next" href="/2019/06/09/软件构架、架构和框架的区别/">
+        <span class="next-text nav-default">软件构架、架构和框架的区别</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    </nav></footer>
+    </article></div><div class="comments" id="comments"></div></div>
+      </main>
+
+      <footer id="footer" class="footer"><div class="social-links"><a href="mailto:shell.sailhe@gmail.com" class="iconfont icon-email" title="email"></a>
+        <a href="https://github.com/sailhe" class="iconfont icon-github" title="github"></a>
+        <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    </div><div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://hexo.io/">Hexo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">&copy;2018 - 2024<span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">SailHe</span>
+  </span>
+</div>
+</footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    <!-- >
+  <div class="adventure-island-container">
+    <div class="clouds">
+        <div class="bg"></div>
+    </div>
+    <div class="mountains">
+        <div class="bg"></div>
+    </div>
+    <div class="trees">
+        <div class="bg"></div>
+    </div>
+    <div class="bushes">
+        <div class="bg"></div>
+    </div>
+    <div class="lawn">
+        <div class="bg"></div>
+    </div>
+    <div class="scroll">
+        <div class="bg"></div>
+    </div>
+</div>
+<div class="cat-main">
+    <span class="stand"></span>
+    <div class="cat">
+        <div class="body"></div>
+        <div class="head">
+            <div class="ear"></div>
+            <div class="ear"></div>
+        </div>
+        <div class="face">
+            <div class="nose"></div>
+            <div class="whisker-container">
+                <div class="whisker"></div>
+                <div class="whisker"></div>
+            </div>
+            <div class="whisker-container">
+                <div class="whisker"></div>
+                <div class="whisker"></div>
+            </div>
+        </div>
+        <div class="tail-container">
+            <div class="tail">
+                <div class="tail">
+                    <div class="tail">
+                        <div class="tail">
+                            <div class="tail">
+                                <div class="tail">
+                                    <div class="tail"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div><!-- Quantity should be the same in Sass-->
+<div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+</div><script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/lib/pjax/jquery.pjax.min.js"></script>
+  <script type="text/javascript" src="/lib/nprogress/nprogress.min.js"></script>
+  <script type="text/javascript" src="/js/src/even.js?v=2.11.0"></script>
+</body>
+</html>

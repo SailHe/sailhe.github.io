@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head><meta name="generator" content="Hexo 3.8.0"><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+<meta name="theme-color" content="#f8f5ec">
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+<meta name="description" content="软件构架、架构和框架的区别"><meta name="keywords" content="program,life"><link rel="alternate" href="/atom.xml" title="SailHe's Cyber Memory(Core)"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.11.0">
+<link rel="canonical" href="https://sailhe.github.io/2019/06/09/软件构架、架构和框架的区别/">
+
+<link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css"><link rel="stylesheet" type="text/css" href="/lib/nprogress/nprogress.min.css">
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.11.0">
+
+<script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+<script>
+  window.config = {"leancloud":{"app_id":null,"app_key":null},"toc":true,"fancybox":true,"pjax":true,"latex":false};
+</script>
+
+    <title>软件构架、架构和框架的区别 - SailHe's Cyber Memory(Core)</title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">SailHe's Cyber Memory(Core)</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list"><a href="/">
+        <li class="mobile-menu-item">首页
+          </li>
+      </a><a href="/archives/">
+        <li class="mobile-menu-item">归档
+          </li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签
+          </li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类
+          </li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">关于
+          </li>
+      </a></ul>
+</nav>
+<div class="container background-transparent" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">SailHe's Cyber Memory(Core)</a>
+</div>
+
+<nav class="site-navbar"><ul id="menu" class="menu"><li class="menu-item">
+          <a class="menu-item-link" href="/">
+            首页
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            归档
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/tags/">
+            标签
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/categories/">
+            分类
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/about/">
+            关于
+            </a>
+        </li>
+      </ul></nav>
+</header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper transform-shadow">
+          <div id="content" class="content"><article class="post">
+    <header class="post-header">
+      <h1 class="post-title">软件构架、架构和框架的区别
+        </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2019-06-09
+        </span><span class="post-category">
+            <a href="/categories/转载/">转载</a>
+            </span>
+        </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#软件框架"><span class="toc-text">软件框架</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#构架和架构"><span class="toc-text">构架和架构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是模式？什么是框架？"><span class="toc-text">什么是模式？什么是框架？</span></a></li></ol>
+    </div>
+  </div><div class="post-content"><h2 id="软件框架"><a href="#软件框架" class="headerlink" title="软件框架"></a><strong>软件框架</strong></h2><p>(Software Framework)介绍 </p>
+<blockquote>
+<p>面向某领域（包括业务领域，如ERP，和计算领域，如GUI）的、可复用的”<strong>半成品</strong>“软件，它实现了该领域的共性部分，并提供一系列定义良好的可变点以保证灵活性和可扩展性。<br> 可以说，软件框架是<strong>领域分析结果</strong>的<strong>软件化</strong>，是领域内<strong>最终应用系统</strong>的<strong>模板</strong>。 </p>
+</blockquote>
+<ul>
+<li>随着软件规模的扩大、应用的广泛和软件复用技术的发展，以子程序或类（Class）为单位的软件复用有许多不足：<blockquote>
+<ol>
+<li>子程序库日趋其庞大以致于使用人员难以掌握，</li>
+<li>大多数类粒度很小，且其自身往往不能完成有用的功能。</li>
+</ol>
+</blockquote>
+</li>
+</ul>
+<p>这一问题迫使人们在复用中将一组类（或模块）及其交互作为一个整体来考虑，由此出现了软件框架。 </p>
+<ul>
+<li>软件框架至少包含以下组成部分： <blockquote>
+<ol>
+<li>一系列完成计算的<strong>模块</strong>，在此称为<strong>构件</strong>。 </li>
+<li>构件之间的关系与<strong>交互机制</strong>。 </li>
+<li>一系列<strong>可变点</strong>（也称<strong>热点</strong>，<strong>Hot-spots</strong>，或<strong>调整点</strong>）。 </li>
+<li>可变点的<strong>行为调整机制</strong>。 </li>
+</ol>
+</blockquote>
+</li>
+</ul>
+<p>开发人员通过软件框架的<strong>行为调整机制</strong>，将领域中具体应用所特有的软件模块绑定到该软件框架的可变点，从而得到最终应用系统，这一过程称为<strong>软件框架的例化（instantiation）</strong>。<br>通过软件框架的使用，开发人员可将主要精力放在应用所特有的模块的开发上，从而大大提高了软件生产率和质量。 </p>
+<p>软件框架的<strong>行为调整机制</strong>是指<strong>如何针对</strong>具体的应用<strong>调整</strong>该框架的<strong>可变部分</strong>、如何在<strong>可变点</strong>加入特定应用模块所采用的方法和规则。</p>
+<ul>
+<li>行为调整机制可分为四种：<blockquote>
+<ol>
+<li>模板参数化。软件框架提供代码自动生成工具，该工具根据用户设置的参数自动生成所需的代码。 </li>
+<li>继承和多态。通过面向对象中的子类继承和重载，在子类中加入新的功能或改变父类的行为。 </li>
+<li>动态绑定。在运行时刻动态绑定所需的对象服务，可通过软件模式技术实现。 </li>
+<li>构件替换。通过替换框架中可插拔的构件来加入业务特定的功能， </li>
+</ol>
+</blockquote>
+</li>
+</ul>
+<p>不同于一般的可复用软件制品，软件框架的一个显著特点是逆向控制（Inversion of Control），在复用过程中，前者需被显式调用，控制是在应用特定的模块中，软件框架则不然，应用开发人员只要将应用特定的模块绑定到框架内，框架则根据自己的交互机制自动调用该模块，控制由框架负责。 </p>
+<ul>
+<li>软件框架有很多种。</li>
+</ul>
+<blockquote>
+<p>按其应用的范围可分为： </p>
+<ol>
+<li>系统基础设施框架。用于简化系统级软件的开发，如操作系统、用户界面、语言处理等，典型例子为MacApp, Microsoft’s MFC等。 </li>
+<li>中间件集成框架。用于组装分布式应用和构件，典型例子为Microsoft’s DCOM, JavaSoft’s RMI, OMG’s CORBA等 </li>
+<li>企业应用框架。用于各类应用领域，如电信、制造业、金融等。 </li>
+</ol>
+</blockquote>
+<blockquote>
+<p>按其表现形态可分为： </p>
+<ol>
+<li>白盒框架。支持白盒复用，大型的类库或子程序库通常均提供白盒框架来协助复用。 </li>
+<li>黑盒框架。支持黑盒复用。中间件集成框架一般为黑盒框架。</li>
+</ol>
+</blockquote>
+<hr>
+<h2 id="构架和架构"><a href="#构架和架构" class="headerlink" title="构架和架构"></a><strong>构架</strong>和<strong>架构</strong></h2><p>也就是通常所说的<strong>软件体系结构(software architecture)</strong>.</p>
+<p>体系结构一般包括三个部分:</p>
+<ul>
+<li>构件,用于描述计算;</li>
+<li>连接器,用于描述构件的连接部分;</li>
+<li>配置,将构件和连接器组成一个有机整体.<br><code>对体系结构比较严谨比较认可的定义可参见＜软件工程技术概论＞（科学出版社）．</code><blockquote>
+<p><strong>体系结构</strong>与<strong>框架（Framework)</strong>的区别与联系如下： </p>
+<ol>
+<li>呈现形式不同．体系结构的呈现形式是一个<strong>设计规约</strong>，而框架则是<strong>程序代码</strong>． </li>
+<li>目的不同．体系结构的首要目的大多是<strong>指导一个软件系统的实施与开发</strong>；而框架的首要目的是为<strong>复用</strong>．因此，<strong>一个框架可有其体系结构</strong>，用于指导该框架的开发，反之不然． </li>
+<li>有种特殊的体系结构, <strong>DSSA(领域特定体系结构）</strong>其首要目的也是为了复用． </li>
+<li>有个叫<strong>体系结构风格</strong>的东西，将它用程序代码实现后就成了Corba,COM之类的东西，它们俩叫<strong>体系结构框架</strong>，也叫<strong>中间件集成框架</strong>，又有人愿意叫它<strong>对象中间件</strong></li>
+</ol>
+</blockquote>
+</li>
+</ul>
+<hr>
+<h2 id="什么是模式？什么是框架？"><a href="#什么是模式？什么是框架？" class="headerlink" title="什么是模式？什么是框架？"></a>什么是模式？什么是框架？</h2><p>（简述） ――UB （<a href="mailto:UB5023@MSN.COM" target="_blank" rel="noopener">UB5023@MSN.COM</a>） 2003-6-6</p>
+<p>现在软件设计里到处都是模式，框架。有次朋友问什么是模式？我也在学习中，就我的学习经验，给出以下小结。（注意：个人观点，仅供参考，欢迎指正。）</p>
+<ol>
+<li><p>什么是模式？</p>
+<blockquote>
+<p>模式，即pattern。其实就是解决某一类问题的方法论。你把解决某类问题的方法总结归纳到理论高度，那就是模式。<br>Alexander给出的经典定义是：每个模式都描述了一个在我们的环境中不断出现的问题，然后描述了该问题的解决方案的核心。通过这种方式，你可以无数次地使用那些已有的解决方案，无需在重复相同的工作。<br>模式有不同的领域，建筑领域有建筑模式，软件设计领域也有设计模式。当一个领域逐渐成熟的时候，自然会出现很多模式。</p>
+</blockquote>
+</li>
+<li><p>什么是框架？</p>
+<blockquote>
+<p>框架，即framework。其实就是某种应用的半成品，就是一组组件，供你选用完成你自己的系统。简单说就是使用别人搭好的舞台，你来做表演。而且，框架一般是成熟的，不断升级的软件。</p>
+</blockquote>
+</li>
+<li><p>为什么要用模式？</p>
+<blockquote>
+<p>因为模式是一种指导，在一个良好的指导下，有助于你完成任务，有助于你作出一个优良的设计方案，达到事半功倍的效果。而且会得到解决问题的最佳办法。</p>
+</blockquote>
+</li>
+<li><p>为什么要用框架？</p>
+<blockquote>
+<p>因为软件系统发展到今天已经很复杂了，特别是服务器端软件，设计到的知识，内容，问题太多。<br>在某些方面使用别人成熟的框架，就相当于让别人帮你完成一些基础工作，你只需要集中精力完成系统的业务逻辑设计。<br>而且框架一般是成熟，稳健的，他可以处理系统很多细节问题，比如，事物处理，安全性，数据流控制等问题。<br>还有框架一般都经过很多人使用，所以结构很好，所以扩展性也很好，而且它是不断升级的，你可以直接享受别人升级代码带来的好处。</p>
+</blockquote>
+</li>
+</ol>
+<p>框架一般处在低层应用平台（如J2EE）和高层业务逻辑之间的<strong>中间层</strong>。</p>
+<ol start="5">
+<li>软件为什么要分层？<blockquote>
+<p>为了实现“高内聚、低耦合”。把问题划分开来各个解决，易于控制，易于延展，易于分配资源…总之好处很多啦：）。</p>
+</blockquote>
+</li>
+</ol>
+<hr>
+<p><strong>以下所述主要是JAVA，J2EE方面的模式和框架：</strong></p>
+<ol>
+<li>常见的设计模式有什么？<blockquote>
+<p>首先，你要了解的是GOF的《设计模式–可复用面向对象软件的基础》一书（这个可以说是程序员必备的了），注意：GOF不是一个人，而是指四个人。<br>它的原意是Gangs Of Four,就是“四人帮”，就是指此书的四个作者：Erich Gamma,Richard Helm，Ralph Johnson,John Vlissides。<br>这本书讲了23种主要的模式，包括：抽象工厂、适配器、外观模式等。<br>还有其他的很多模式，估计有100多种。</p>
+</blockquote>
+</li>
+</ol>
+<p><strong>软件设计模式太多，就我的理解简单说一下最常见的MVC模式。</strong><br><code>本人注: MVC是架构模式或者说软件设计理念 并非简单的软件设计模式 前者显然解决的问题更加抽象 应用也更广泛</code></p>
+<p>MVC模式是1996年由Buschmann提出的：</p>
+<ul>
+<li>模型（Model）：就是封装数据和所有基于对这些数据的操作。</li>
+<li>视图（View）：就是封装的是对数据显示，即用户界面。</li>
+<li>控制器（Control）：就是封装外界作用于模型的操作和对数据流向的控制等。</li>
+</ul>
+<p>另外：</p>
+<blockquote>
+<p>RUP（Rational Unified Process）软件统一过程，XP（Extreme Programming）极端编程，这些通常被叫做“过程方法”，是一种软件项目实施过程的方法论，它是针对软件项目的实施过程提出的方法策略。也是另一个角度的模式。</p>
+</blockquote>
+<ol start="2">
+<li>常见的JAVA框架有什么？</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>简称</th>
+<th>全称</th>
+<th>主要应用方面</th>
+<th>主要应用技术</th>
+<th>出处</th>
+<th>简述</th>
+<th>费用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>WAF</td>
+<td>WEB APPLICATION FRAMEWORK</td>
+<td>EJB层[9]</td>
+<td>EJB等</td>
+<td><a href="http://java.sun.com/blueprints/code/index.html" target="_blank" rel="noopener">blueprints</a></td>
+<td>[1]</td>
+<td>免费</td>
+</tr>
+<tr>
+<td>Struts</td>
+<td></td>
+<td>WEB层</td>
+<td>JSP,TagLib,JavaBean,XML等</td>
+<td><a href="http://jakarta.apache.org/struts/index.html" target="_blank" rel="noopener">struts</a></td>
+<td>[2]</td>
+<td>免费</td>
+</tr>
+<tr>
+<td>Turbine</td>
+<td></td>
+<td>WEB层</td>
+<td>servlet等</td>
+<td><a href="http://jakarta.apache.org/turbine/index.html" target="_blank" rel="noopener">turbine</a></td>
+<td>[3]</td>
+<td>免费</td>
+</tr>
+<tr>
+<td>COCOON</td>
+<td></td>
+<td>WEB层</td>
+<td>XML，XSP，servlet等</td>
+<td><a href="http://cocoon.apache.org/2.0/" target="_blank" rel="noopener">cocoon</a></td>
+<td>[4]</td>
+<td>免费</td>
+</tr>
+<tr>
+<td>ECHO</td>
+<td></td>
+<td>WEB层</td>
+<td>servlet等</td>
+<td><a href="http://www.nextapp.com/products/echo/" target="_blank" rel="noopener">echo</a></td>
+<td>[5]</td>
+<td>免费</td>
+</tr>
+<tr>
+<td>JATO</td>
+<td>SUN ONE Application Framework</td>
+<td>WEB层</td>
+<td>JSP,TagLib,JavaBean等</td>
+<td><a href="http://www.sun.com" target="_blank" rel="noopener">sun</a></td>
+<td>[6]</td>
+<td>免费</td>
+</tr>
+<tr>
+<td>TCF</td>
+<td>Thin-Client Framework</td>
+<td>JAVA GUI</td>
+<td>JAVA application等</td>
+<td><a href="http://www.alphaworks.ibm.com/tech/tcf" target="_blank" rel="noopener">tcf</a></td>
+<td>[7]</td>
+<td>收费[8]</td>
+</tr>
+</tbody>
+</table>
+<p><strong>简述WAF+STRUTS结合的例子</strong>：<br>WEB层用STRUTS，EJB层用WAF：<br>JSP(TagLib)-&gt;ActionForm-&gt;Action-&gt;<br>Event-&gt;EJBAction-&gt;EJB-&gt;DAO-&gt;Database<br>JSP（TagLib） (forward)&lt;-Action&lt;-EventResponse&lt;-</p>
+<ul>
+<li>拓展</li>
+</ul>
+<ol>
+<li>这是SUN在展示J2EE平台时所用的例子PetStore(宠物商店系统)里面的框架。是SUN蓝皮书例子程序中提出的应用框架。它实现了 MVC和其他良好的设计模式。SUN的网站上有技术资料，最好下载PetStore来研究，WEBLOGIC里自带此系统，源码在bea/weblogic700/samples/server/src/petstore。这是学习了解J2EE的首选框架。</li>
+<li>这是APACHE的开源项目，目前应用很广泛。基于MVC模式，结构很好，基于JSP。Jbuilder8里已经集成了STRUTS1.02的制作。</li>
+<li>这是APACHE的开源项目。基于SERVLET。据说速度比较快，基于service（pluggable implementation可插拔的执行组件）的方式提供各种服务。</li>
+<li>这是APACHE的一个开源项目。基于XML，基于XSP（通俗地说，XSP是在XML静态文档中加入Java程序段后形成的动态XML文档。）。特点是可以与多种数据源交互，包括文件系统，数据库，LDAP，XML资源库，网络数据源等。</li>
+<li>nextapp公司的一个开源项目。基于SERVLET。页面可以做的很漂亮，结合echopoint，可以作出很多图形效果（里面用了jfreechart包）。使用SWING的思想来作网页，把HTML当作JAVA的类来做。但是大量使用Session，页面分帧（Frame）很多,系统资源消耗很大。</li>
+<li>这是SUN推出的一个商业性框架，一看名字就知道是结合SUN ONE的平台推出的。我下载了JATO2.0看了一下，感觉有些简单，使用了JSP＋TagLib+JavaBean。如他的DOC所说JATO是适合用在小的WEB应用里。</li>
+<li>这是IBM出的一个框架。基于MVC模式，基于JAVA Application。推荐一篇介绍文章：<a href="http://www-900.ibm.com/developerWorks/cn/java/j-tcf1/index.shtml" target="_blank" rel="noopener">http://www-900.ibm.com/developerWorks/cn/java/j-tcf1/index.shtml</a></li>
+<li>(每个企业对象license:2000美元)</li>
+<li>(WEB层也有，但是比较弱)</li>
+</ol>
+<p>其实本文的目的在于“抛砖引玉”，希望各路高手请你们把各种框架的特点和出处罗列一下 ，供大家参考，选用。</p>
+<hr>
+<p><strong>本文转载自：<a href="https://blog.csdn.net/nizhigang2000/article/details/58371" target="_blank" rel="noopener">https://blog.csdn.net/nizhigang2000/article/details/58371</a></strong><br><strong>始见于: <a href="https://my.oschina.net/duansheli/blog/292288" target="_blank" rel="noopener">https://my.oschina.net/duansheli/blog/292288</a></strong></p>
+<ul>
+<li>排版(优化阅读体验)</li>
+<li>无内容减少</li>
+</ul>
+
+      </div>
+      <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="https://sailhe.github.io">SailHe</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="https://sailhe.github.io/2019/06/09/软件构架、架构和框架的区别/">https://sailhe.github.io/2019/06/09/软件构架、架构和框架的区别/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span><a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+      <footer class="post-footer">
+        <div class="post-tags">
+            <a href="/tags/架构/">架构</a>
+            </div>
+        
+        <nav class="post-nav"><a class="prev" href="/2019/06/16/古老的Servlet技术/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">古老的Servlet技术</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    <a class="next" href="/2019/06/02/ECMAScript规范及其相关技术/">
+        <span class="next-text nav-default">ECMAScript规范及其相关技术</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    </nav></footer>
+    </article></div><div class="comments" id="comments"></div></div>
+      </main>
+
+      <footer id="footer" class="footer"><div class="social-links"><a href="mailto:shell.sailhe@gmail.com" class="iconfont icon-email" title="email"></a>
+        <a href="https://github.com/sailhe" class="iconfont icon-github" title="github"></a>
+        <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    </div><div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://hexo.io/">Hexo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">&copy;2018 - 2024<span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">SailHe</span>
+  </span>
+</div>
+</footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    <!-- >
+  <div class="adventure-island-container">
+    <div class="clouds">
+        <div class="bg"></div>
+    </div>
+    <div class="mountains">
+        <div class="bg"></div>
+    </div>
+    <div class="trees">
+        <div class="bg"></div>
+    </div>
+    <div class="bushes">
+        <div class="bg"></div>
+    </div>
+    <div class="lawn">
+        <div class="bg"></div>
+    </div>
+    <div class="scroll">
+        <div class="bg"></div>
+    </div>
+</div>
+<div class="cat-main">
+    <span class="stand"></span>
+    <div class="cat">
+        <div class="body"></div>
+        <div class="head">
+            <div class="ear"></div>
+            <div class="ear"></div>
+        </div>
+        <div class="face">
+            <div class="nose"></div>
+            <div class="whisker-container">
+                <div class="whisker"></div>
+                <div class="whisker"></div>
+            </div>
+            <div class="whisker-container">
+                <div class="whisker"></div>
+                <div class="whisker"></div>
+            </div>
+        </div>
+        <div class="tail-container">
+            <div class="tail">
+                <div class="tail">
+                    <div class="tail">
+                        <div class="tail">
+                            <div class="tail">
+                                <div class="tail">
+                                    <div class="tail"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div><!-- Quantity should be the same in Sass-->
+<div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+</div><script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/lib/pjax/jquery.pjax.min.js"></script>
+  <script type="text/javascript" src="/lib/nprogress/nprogress.min.js"></script>
+  <script type="text/javascript" src="/js/src/even.js?v=2.11.0"></script>
+</body>
+</html>

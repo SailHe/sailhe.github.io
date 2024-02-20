@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head><meta name="generator" content="Hexo 3.8.0"><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+<meta name="theme-color" content="#f8f5ec">
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+<meta name="description" content="归纳整理操作系统相关的知识与文档"><meta name="keywords" content="program,life"><link rel="alternate" href="/atom.xml" title="SailHe's Cyber Memory(Core)"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.11.0">
+<link rel="canonical" href="https://sailhe.github.io/2018/12/20/初识shell编程/">
+
+<link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css"><link rel="stylesheet" type="text/css" href="/lib/nprogress/nprogress.min.css">
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.11.0">
+
+<script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+<script>
+  window.config = {"leancloud":{"app_id":null,"app_key":null},"toc":true,"fancybox":true,"pjax":true,"latex":false};
+</script>
+
+    <title>初识shell编程 - SailHe's Cyber Memory(Core)</title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">SailHe's Cyber Memory(Core)</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list"><a href="/">
+        <li class="mobile-menu-item">首页
+          </li>
+      </a><a href="/archives/">
+        <li class="mobile-menu-item">归档
+          </li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签
+          </li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类
+          </li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">关于
+          </li>
+      </a></ul>
+</nav>
+<div class="container background-transparent" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">SailHe's Cyber Memory(Core)</a>
+</div>
+
+<nav class="site-navbar"><ul id="menu" class="menu"><li class="menu-item">
+          <a class="menu-item-link" href="/">
+            首页
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            归档
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/tags/">
+            标签
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/categories/">
+            分类
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/about/">
+            关于
+            </a>
+        </li>
+      </ul></nav>
+</header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper transform-shadow">
+          <div id="content" class="content"><article class="post">
+    <header class="post-header">
+      <h1 class="post-title">初识shell编程
+        </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2018-12-20
+        </span><span class="post-category">
+            <a href="/categories/Induction/">Induction</a>
+            </span>
+        </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#shell-和-bash-的区别"><span class="toc-text">shell 和 bash 的区别</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#关于如何使用win子系统安装Linux-以及zsh"><span class="toc-text">关于如何使用win子系统安装Linux 以及zsh</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Ubuntu-cmd"><span class="toc-text">Ubuntu cmd</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Docker-in-Win10"><span class="toc-text">Docker in Win10</span></a></li></ol>
+    </div>
+  </div><div class="post-content"><h1 id="shell-和-bash-的区别"><a href="#shell-和-bash-的区别" class="headerlink" title="shell 和 bash 的区别"></a>shell 和 bash 的区别</h1><p><a href="https://www.jianshu.com/p/a702a01db5c7" target="_blank" rel="noopener">简书参考</a><br>shell用于将命令翻译成计算机语言，也就是1和0,可以简单的将shell理解为命令行，与之相关的还有shell脚本，就是shell能识别的一连串命令行<br>bash是shell的一种.<br>  例如<br>    Bourne shell(sh); Linux中默认的shell就是Bourne-Again shell(简称bash)<br>    伯克利分校比尔▪乔伊写的C Shell(csh)，因为类似C语言，故此得名。</p>
+<h1 id="关于如何使用win子系统安装Linux-以及zsh"><a href="#关于如何使用win子系统安装Linux-以及zsh" class="headerlink" title="关于如何使用win子系统安装Linux 以及zsh"></a>关于如何使用win子系统安装Linux 以及zsh</h1><p><a href="https://www.jianshu.com/p/bc38ed12da1d" target="_blank" rel="noopener">简书参考</a></p>
+<p>zsh: 史称『终极 Shell』, 但配置复杂<br>–安装zsh 并更改默认shell<br><a href="https://www.jianshu.com/p/fe244b1c7737" target="_blank" rel="noopener">简书参考</a><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install zsh -y</span><br><span class="line">chsh -s $(<span class="built_in">which</span> zsh)</span><br></pre></td></tr></table></figure></p>
+<p>重启</p>
+<p>–oh-my-zsh: zsh的配置项目<br><a href="https://github.com/robbyrussell/oh-my-zsh" target="_blank" rel="noopener">Github参考</a><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh</span><br><span class="line">cp ~/.zshrc ~/.zshrc.orig <span class="comment"># 若存在.zshrc则备份</span></span><br><span class="line">cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc <span class="comment"># 创建模板.zshrc</span></span><br><span class="line">chsh -s /bin/zsh</span><br></pre></td></tr></table></figure></p>
+<h1 id="Ubuntu-cmd"><a href="#Ubuntu-cmd" class="headerlink" title="Ubuntu cmd"></a>Ubuntu cmd</h1><p>Windows：先分区，再格式化。<br>Linux：一切皆文件。<br>挂载：将分区和目录绑定在一起。</p>
+<p>pwd：打印当前工作目录。<br>mkdir：创建文件夹。<br>ls：列出所有子目录以及文件夹。<br>cd：改变当前工作目录。<br>tab快捷键：补全目录或者命令。<br>gedit ARM.c：新建ARM.c文件。<br>gedit spl.c &amp;：一边编辑文件，一边编译文件，不占用终端，文件在后台运行。<br>rm：删除文件。<br>rmdir：删除目录。<br>rm -rf hsp/: 强制删除文件目录以及下面包含的文件，强制递归删除。<br>mv main.c test.c: 文件重命名：(移动文件)<br>cp main.c hsp/main.c: 文件复制。<br>ps -aux：显示系统正在运行的程序。<br>pstree：树形显示系统中运行的程序。</p>
+<p>kill -9  -3747：杀掉父进程。<br>shutdown -h now：立即关机<br>sudo shutdown -h now：切换到root用户再关机。<br>sudo root：重启。</p>
+<p>sudo mv former_name new_name: 修改文件名<br>sudo mv former_name/ new_name/: 修改文件夹名</p>
+<h1 id="Docker-in-Win10"><a href="#Docker-in-Win10" class="headerlink" title="Docker in Win10"></a>Docker in Win10</h1><p><a href="https://yeasy.gitbooks.io/docker_practice/image/pull.html" target="_blank" rel="noopener">书籍</a><br><a href="https://cloud.docker.com/" target="_blank" rel="noopener">下载</a><br><a href="https://blog.csdn.net/zhang197093/article/details/78643708" target="_blank" rel="noopener">CSDN</a></p>
+<p>由于Docker是运行在linux系统上的，所以要想在windows上运行docker，需要借助虚拟机，老的<a href="https://www.docker.com/products/docker-toolbox" target="_blank" rel="noopener">Docker Toolbox</a>使用Oracle VM VirtualBox 来运行一个简化的linux系统，而目前的<a href="https://store.docker.com/editions/community/docker-ce-desktop-windows" target="_blank" rel="noopener">Docker CE for Windows</a>则是使用微软自带的 Hyper-V（从Win8开始）虚拟机组件。</p>
+<p>所以在安装Docker CE for Windows时，会帮你打开Hyper-V组件（默认是关闭的），这会和你的VirtualBox冲突，导致VirtualBox无法正常运行，解决办法就是关闭Hyper-V功能（卸载Docker CE for Windows时并不会自动帮你关闭）</p>
+<ul>
+<li><p>坑点1<br>类似的错误, 大可能是由于你使用了不在已有镜像服务器的镜像: 此时需要添加合适的镜像服务器, 或是换一个</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Get https://registry-1.docker.io/v2/: net/http: request canceled while waiting for connection</span><br><span class="line">(Client.Timeout exceeded while awaiting headers)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><a href="https://my.oschina.net/ykbj/blog/1595328" target="_blank" rel="noopener">Docker 进阶</a></p>
+</li>
+<li><a href="https://archerwq.github.io/2017/09/21/setup-jekyll-locally-with-docker/" target="_blank" rel="noopener">使用Docker本地运行jekyll</a>(老版本 失败告终)</li>
+<li><a href="https://annatarhe.github.io/2016/11/27/all-i-know-about-docker.html" target="_blank" rel="noopener">使用Docker本地运行jekyll</a>(老版本 折腾了至少一小时 运行起来了 但自己的博客并没有运行起来)</li>
+<li><p><a href="https://docs.docker.com/docker-for-windows/#docker-settings-dialog" target="_blank" rel="noopener">官网Doc</a>(扣由桌面程序处启动)</p>
+</li>
+<li><p><a href="https://blog.csdn.net/u013948858/article/details/80811986" target="_blank" rel="noopener">更改镜像存储目录</a></p>
+</li>
+<li><a href="https://juejin.im/post/59a8f9e0f265da24797b7da0" target="_blank" rel="noopener">安装软件失败</a></li>
+<li><a href="https://forums.docker.com/t/where-are-images-stored/9794/10" target="_blank" rel="noopener">更改WSL 或者 Docker的位置</a></li>
+<li><p><a href="https://www.oschina.net/question/1050447_165040" target="_blank" rel="noopener">无名镜像</a></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt; none &gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>简单解释</p>
+</li>
+</ul>
+<ol>
+<li>dockerfile: 构建镜像；服务除了可以基于指定的镜像，还可以基于一份 Dockerfile</li>
+<li>docker run: 启动容器；</li>
+<li>docker-compose: <a href="https://www.jianshu.com/p/2217cfed29d7" target="_blank" rel="noopener">启动服务</a>；</li>
+</ol>
+<ul>
+<li>PS<br>之前把 system 拼成了 systme, Google翻译也能显示出系统的译文(但并不详细), 人工ZZ诶</li>
+</ul>
+<ul>
+<li>Github Gist 2018年12月左右</li>
+<li>更新: 2019-05-19 22:06:09</li>
+</ul>
+<p><a href="https://docs.docker.com/install/linux/docker-ce/ubuntu/#uninstall-old-versions" target="_blank" rel="noopener">Get Docker Engine - Community for Ubuntu</a></p>
+
+      </div>
+      <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="https://sailhe.github.io">SailHe</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="https://sailhe.github.io/2018/12/20/初识shell编程/">https://sailhe.github.io/2018/12/20/初识shell编程/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span><a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+      <footer class="post-footer">
+        <div class="post-tags">
+            <a href="/tags/ESR/">ESR</a>
+            <a href="/tags/Operating-System/">Operating-System</a>
+            </div>
+        
+        <nav class="post-nav"><a class="prev" href="/2019/05/18/解决一个奇怪的Hexo部署错误/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">解决一个奇怪的Hexo部署错误</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    <a class="next" href="/2018/12/20/正确认识操作系统进程/">
+        <span class="next-text nav-default">正确认识操作系统进程</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    </nav></footer>
+    </article></div><div class="comments" id="comments"></div></div>
+      </main>
+
+      <footer id="footer" class="footer"><div class="social-links"><a href="mailto:shell.sailhe@gmail.com" class="iconfont icon-email" title="email"></a>
+        <a href="https://github.com/sailhe" class="iconfont icon-github" title="github"></a>
+        <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    </div><div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://hexo.io/">Hexo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">&copy;2018 - 2024<span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">SailHe</span>
+  </span>
+</div>
+</footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    <!-- >
+  <div class="adventure-island-container">
+    <div class="clouds">
+        <div class="bg"></div>
+    </div>
+    <div class="mountains">
+        <div class="bg"></div>
+    </div>
+    <div class="trees">
+        <div class="bg"></div>
+    </div>
+    <div class="bushes">
+        <div class="bg"></div>
+    </div>
+    <div class="lawn">
+        <div class="bg"></div>
+    </div>
+    <div class="scroll">
+        <div class="bg"></div>
+    </div>
+</div>
+<div class="cat-main">
+    <span class="stand"></span>
+    <div class="cat">
+        <div class="body"></div>
+        <div class="head">
+            <div class="ear"></div>
+            <div class="ear"></div>
+        </div>
+        <div class="face">
+            <div class="nose"></div>
+            <div class="whisker-container">
+                <div class="whisker"></div>
+                <div class="whisker"></div>
+            </div>
+            <div class="whisker-container">
+                <div class="whisker"></div>
+                <div class="whisker"></div>
+            </div>
+        </div>
+        <div class="tail-container">
+            <div class="tail">
+                <div class="tail">
+                    <div class="tail">
+                        <div class="tail">
+                            <div class="tail">
+                                <div class="tail">
+                                    <div class="tail"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div><!-- Quantity should be the same in Sass-->
+<div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+</div><script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/lib/pjax/jquery.pjax.min.js"></script>
+  <script type="text/javascript" src="/lib/nprogress/nprogress.min.js"></script>
+  <script type="text/javascript" src="/js/src/even.js?v=2.11.0"></script>
+</body>
+</html>

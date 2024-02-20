@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head><meta name="generator" content="Hexo 3.8.0"><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+<meta name="theme-color" content="#f8f5ec">
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+<meta name="description" content="操作系统中的一些易混淆概念"><meta name="keywords" content="program,life"><link rel="alternate" href="/atom.xml" title="SailHe's Cyber Memory(Core)"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.11.0">
+<link rel="canonical" href="https://sailhe.github.io/2019/05/20/正确认识有关操作系统的几个重要概念/">
+
+<link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css"><link rel="stylesheet" type="text/css" href="/lib/nprogress/nprogress.min.css">
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.11.0">
+
+<script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+<script>
+  window.config = {"leancloud":{"app_id":null,"app_key":null},"toc":true,"fancybox":true,"pjax":true,"latex":false};
+</script>
+
+    <title>正确认识有关操作系统的几个重要概念 - SailHe's Cyber Memory(Core)</title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">SailHe's Cyber Memory(Core)</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list"><a href="/">
+        <li class="mobile-menu-item">首页
+          </li>
+      </a><a href="/archives/">
+        <li class="mobile-menu-item">归档
+          </li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签
+          </li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类
+          </li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">关于
+          </li>
+      </a></ul>
+</nav>
+<div class="container background-transparent" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">SailHe's Cyber Memory(Core)</a>
+</div>
+
+<nav class="site-navbar"><ul id="menu" class="menu"><li class="menu-item">
+          <a class="menu-item-link" href="/">
+            首页
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            归档
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/tags/">
+            标签
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/categories/">
+            分类
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/about/">
+            关于
+            </a>
+        </li>
+      </ul></nav>
+</header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper transform-shadow">
+          <div id="content" class="content"><article class="post">
+    <header class="post-header">
+      <h1 class="post-title">正确认识有关操作系统的几个重要概念
+        </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2019-05-20
+        </span><span class="post-category">
+            <a href="/categories/Docs/">Docs</a>
+            </span>
+        </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#基本概念简介"><span class="toc-text">基本概念简介:</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#前导知识"><span class="toc-text">前导知识</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#控制台"><span class="toc-text">控制台:</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DOS系统"><span class="toc-text">DOS系统:</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#壳层-Shell"><span class="toc-text">壳层(Shell)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#终端-terminal"><span class="toc-text">终端(terminal)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#常见cmd命令"><span class="toc-text">常见cmd命令</span></a></li></ol></li></ol>
+    </div>
+  </div><div class="post-content"><h1 id="基本概念简介"><a href="#基本概念简介" class="headerlink" title="基本概念简介:"></a>基本概念简介:</h1><h2 id="前导知识"><a href="#前导知识" class="headerlink" title="前导知识"></a><a href="/2018/12/20/正确认识操作系统进程/">前导知识</a></h2><h2 id="控制台"><a href="#控制台" class="headerlink" title="控制台:"></a>控制台:</h2><blockquote>
+<p>即[命令行界面] (英语：command-line interface，缩写：CLI)<br> 也有人称之为[字符用户界面] (character user interface, CUI)</p>
+</blockquote>
+<pre><code>    是在[图形用户界面]得到普及之前使用最为广泛的用户界面，
+    通常不支持鼠标，用户通过键盘输入指令，计算机接收到指令后，予以执行。
+    用于提供丰富的控制与自动化的系统管理能力
+
+例如 Linux系统的Bash或是Windows系统的Windows PowerShell。
+</code></pre><h2 id="DOS系统"><a href="#DOS系统" class="headerlink" title="DOS系统:"></a><a href="https://zh.wikipedia.org/wiki/DOS" target="_blank" rel="noopener">DOS系统</a>:</h2><blockquote>
+<p>磁盘操作系统(Disk Operating System, DOS): 是个人计算机上的一类操作系统。</p>
+</blockquote>
+<pre><code>透过批处理文件（扩展名为.BAT）提供界面脚本的功能。
+所有的DOS均使用命令行界面。运行程序的方法是在命令行中键入程序的名称。
+DOS系统包含一些公用程序，也提供了一些不是以程序方式存在的命令（常称为内部命令）
+</code></pre><h2 id="壳层-Shell"><a href="#壳层-Shell" class="headerlink" title="壳层(Shell)"></a>壳层(Shell)</h2><p><a href="https://zh.wikipedia.org/wiki/命令提示字元" target="_blank" rel="noopener">命令提示字元-Wiki</a></p>
+<p><a href="https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/cmd" target="_blank" rel="noopener">CMD官方文档</a></p>
+<p><a href="https://zh.wikipedia.org/wiki/Windows_PowerShell" target="_blank" rel="noopener">Powershell-Wiki</a></p>
+<p><a href="https://docs.microsoft.com/en-us/powershell/scripting/learn/understanding-important-powershell-concepts?view=powershell-6" target="_blank" rel="noopener">Powershell官方文档</a></p>
+<p><a href="https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/windows-commands" target="_blank" rel="noopener">Win-commands官方文档</a></p>
+<blockquote>
+<p>指”为用户提供用户界面”的软件，通常指的是命令行界面的解析器。<br>    一般来说，这个词是指操作系统中提供访问内核所提供之服务的程序。</p>
+</blockquote>
+<blockquote>
+<p>Shell也用于泛指所有为用户提供操作界面的程序，也就是程序和用户交互的接口。<br>    因此与之相对的是内核（英语：Kernel），内核不提供和用户的交互功能。</p>
+</blockquote>
+<blockquote>
+<p>不过这个词也拿来指应用软件，或是任何在特定组件外围的软件，例如浏览器或电子邮件软件是HTML排版引擎的shell。<br> Shell这个词是来自于操作系统（内核）与用户界面的外层界面。</p>
+</blockquote>
+<pre><code>管道: 
+
+    管道(|), 是Shell的重要概念, EG: 将dir命令的输出定向到find命令 dir c:\ /s /b | find &quot;CPU&quot;
+    dir | findstr &quot;tmp&quot; 这使得findstr可以对文件夹信息进行搜索
+    命令大全(通过命名方式可知 这些命令, 例如netstat应该是一些程序或是脚本, 不是Powershell的语言本身)
+
+通常分类:
+
+    命令行壳层: 提供命令行界面(CLI 英文 Command Line Interface for batch scripting);
+
+        Windows操作系统-&gt;Windows 95 / 98下的command.com、Windows NT内核下的cmd.exe以及PowerShell
+
+            命令解释程序(command interpreter) Cmd.exe
+                命令行(Command-Line)
+                脚本拓展名: *.cmd
+
+            Powershell
+
+                不仅仅是Shell, 由于以.NET Framework技术为基础, 可以视作是一门脚本语言
+                脚本拓展名: *.ps1
+
+    图形壳层: 提供图形用户界面(GUI);
+
+        Windows操作系统-&gt;explorer.exe(俗称文件浏览器)
+</code></pre><h2 id="终端-terminal"><a href="#终端-terminal" class="headerlink" title="终端(terminal)"></a>终端(terminal)</h2><blockquote>
+<p>是一台计算机或者计算机系统，用来让用户输入数据，及显示其计算结果的机器。<br>Virtual-Terminal<br>Hardware-Terminal</p>
+</blockquote>
+<hr>
+<h2 id="常见cmd命令"><a href="#常见cmd命令" class="headerlink" title="常见cmd命令"></a>常见cmd命令</h2><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">:: 注释符(PS: 命令中的字母一般无大小写之分但符号必须一定为英文下打的)</span><br><span class="line"><span class="built_in">dir</span> :: 显示当前目录下文件(Alias: ls 但在<span class="built_in">CMD</span>下不可用)</span><br><span class="line"><span class="built_in">cd</span>\... :: 回到驱动器目录?</span><br><span class="line"><span class="function">d: :: 切换驱动器盘符(并不切换路径), <span class="title">Powershell</span>的<span class="title">cd</span>能够直接切换盘符, <span class="title">CMD</span>中切换盘符和切换目录是两码事</span></span><br><span class="line"><span class="function"><span class="title">cd</span> <span class="title">h</span>:\<span class="title">java</span> ::进入<span class="title">H</span>盘下的<span class="title">java</span>目录</span></span><br><span class="line"><span class="function"><span class="title">at</span> 12:00 <span class="title">filePath</span> :: 表示在12:00打开<span class="title">filePath</span>对应的文件(现已弃用)</span></span><br><span class="line"><span class="function"><span class="title">start</span> ::(当前命令提示符窗口中打开新的命令提示符窗口)</span></span><br></pre></td></tr></table></figure>
+<pre><code>显示活动的TCP连接，计算机正在侦听的端口，以太网统计信息，IP路由表，IPv4统计信息(用于IP，ICMP，TCP和UDP协议)和IPv6统计信息(用于IPv6，ICMPv6，TCP over IPv6)和IPv6 over IPv6协议:
+</code></pre><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">netstat -aon|<span class="built_in">findstr</span> "端口" :: 可以不用引号 指定端口没有被占用则没有返回</span><br><span class="line">tasklist|<span class="built_in">findstr</span> "PID" :: 也可以在任务管理器的详情信息根据PID查询</span><br><span class="line"><span class="built_in">taskkill</span> /f /t /im 占用进程名.exe :: 杀死服务以释放被占用的端口</span><br></pre></td></tr></table></figure>
+<p><code>超酷炫的Blog</code><a href="https://xstarcd.github.io/wiki/windows/windows_cmd_syntax.html" target="_blank" rel="noopener">windows CMD命令大全及详细解释和语法</a></p>
+<p><strong>以下源于中文网络, 或不可靠, 最好参考MS官方文档, 若没有中文版本, 实机上的帮助文档可能有中文</strong><br><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">command /? :: 输出command命令的帮助文档</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>P1<br>　　winver———检查Windows版本<br>　　wmimgmt.msc—-打开windows管理体系结构(WMI)<br>　　wupdmgr——–windows更新程序<br>　　wscript——–windows脚本宿主设置<br>　　write———-写字板<br>　　winmsd———系统信息<br>　　wiaacmgr——-扫描仪和照相机向导<br>　　winchat——–XP自带局域网聊天<br>P2<br>　　mem.exe——–显示内存使用情况<br>　　Msconfig.exe—系统配置实用程序<br>　　mplayer2——-简易widnows media player<br>　　mspaint——–画图板<br>　　mstsc———-远程桌面连接<br>　　mplayer2——-媒体播放机<br>　　magnify——–放大镜实用程序<br>　　mmc————打开控制台<br>　　mobsync——–同步命令<br>P3<br>　　dxdiag———检查DirectX信息<br>　　drwtsn32—— 系统医生<br>　　devmgmt.msc— 设备管理器<br>　　dfrg.msc——-磁盘碎片整理程序<br>　　diskmgmt.msc—磁盘管理实用程序<br>　　dcomcnfg——-打开系统组件服务<br>　　ddeshare——-打开DDE共享设置<br>　　dvdplay——–DVD播放器<br>P4<br>　　net stop messenger—–停止信使服务<br>　　net start messenger—-开始信使服务<br>　　notepad——–打开记事本<br>　　nslookup——-网络管理的工具向导<br>　　ntbackup——-系统备份和还原<br>　　narrator——-屏幕“讲述人”<br>　　ntmsmgr.msc—-移动存储管理器<br>　　ntmsoprq.msc—移动存储管理员操作请求<br>　　netstat -an—-(TC)命令检查接口<br>P5<br>　　syncapp——–创建一个公文包<br>　　sysedit——–系统配置编辑器<br>　　sigverif——-文件签名验证程序<br>　　sndrec32——-录音机<br>　　shrpubw——–创建共享文件夹<br>　　secpol.msc—–本地安全策略<br>　　syskey———系统加密，一旦加密就不能解开，保护windows xp系统的双重密码<br>　　services.msc—本地服务设置<br>　　Sndvol32——-音量控制程序<br>　　sfc.exe——–系统文件检查器<br>　　sfc /scannow—windows文件保护<br>P6<br>　　tsshutdn——-60秒倒计时关机命令<br>　　tourstart——xp简介（安装完成后出现的漫游xp程序）<br>　　taskmgr——–任务管理器<br>　　eventvwr——-事件查看器<br>　　eudcedit——-造字程序<br>　　explorer——-打开资源管理器<br>　　packager——-对象包装程序<br>　　perfmon.msc—-计算机性能监测程序<br>　　progman——–程序管理器<br>　　regedit.exe—-注册表<br>　　rsop.msc——-组策略结果集<br>　　regedt32——-注册表编辑器<br>　　rononce -p —-15秒关机<br>　　regsvr32 /u *.dll—-停止dll文件运行<br>　　regsvr32 /u zipfldr.dll——取消ZIP支持<br>P7<br>　　cmd.exe——–CMD命令提示符<br>　　chkdsk.exe—–Chkdsk磁盘检查<br>　　certmgr.msc—-证书管理实用程序<br>　　calc———–启动计算器<br>　　charmap——–启动字符映射表<br>　　cliconfg——-SQL SERVER 客户端网络实用程序<br>　　Clipbrd——–剪贴板查看器<br>　　conf———–启动netmeeting<br>　　compmgmt.msc—计算机管理<br>　　cleanmgr——-垃圾整理<br>　　ciadv.msc——索引服务程序<br>　　osk————打开屏幕键盘<br>　　odbcad32——-ODBC数据源管理器<br>　　oobe/msoobe /a—-检查XP是否激活<br>　　lusrmgr.msc—-本机用户和组<br>　　logoff———注销命令<br>　　iexpress——-木马捆绑工具，系统自带<br>　　Nslookup——-IP地址侦测器<br>　　fsmgmt.msc—–共享文件夹管理器<br>　　utilman——–辅助工具管理器<br>　　gpedit.msc—–组策略</p>
+</blockquote>
+
+      </div>
+      <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="https://sailhe.github.io">SailHe</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="https://sailhe.github.io/2019/05/20/正确认识有关操作系统的几个重要概念/">https://sailhe.github.io/2019/05/20/正确认识有关操作系统的几个重要概念/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span><a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+      <footer class="post-footer">
+        <div class="post-tags">
+            <a href="/tags/ESR/">ESR</a>
+            <a href="/tags/Operating-System/">Operating-System</a>
+            </div>
+        
+        <nav class="post-nav"><a class="prev" href="/2019/05/31/Markdown编辑器对比/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">Markdown编辑器对比</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    <a class="next" href="/2019/05/18/解决一个奇怪的Hexo部署错误/">
+        <span class="next-text nav-default">解决一个奇怪的Hexo部署错误</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    </nav></footer>
+    </article></div><div class="comments" id="comments"></div></div>
+      </main>
+
+      <footer id="footer" class="footer"><div class="social-links"><a href="mailto:shell.sailhe@gmail.com" class="iconfont icon-email" title="email"></a>
+        <a href="https://github.com/sailhe" class="iconfont icon-github" title="github"></a>
+        <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    </div><div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://hexo.io/">Hexo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">&copy;2018 - 2024<span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">SailHe</span>
+  </span>
+</div>
+</footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    <!-- >
+  <div class="adventure-island-container">
+    <div class="clouds">
+        <div class="bg"></div>
+    </div>
+    <div class="mountains">
+        <div class="bg"></div>
+    </div>
+    <div class="trees">
+        <div class="bg"></div>
+    </div>
+    <div class="bushes">
+        <div class="bg"></div>
+    </div>
+    <div class="lawn">
+        <div class="bg"></div>
+    </div>
+    <div class="scroll">
+        <div class="bg"></div>
+    </div>
+</div>
+<div class="cat-main">
+    <span class="stand"></span>
+    <div class="cat">
+        <div class="body"></div>
+        <div class="head">
+            <div class="ear"></div>
+            <div class="ear"></div>
+        </div>
+        <div class="face">
+            <div class="nose"></div>
+            <div class="whisker-container">
+                <div class="whisker"></div>
+                <div class="whisker"></div>
+            </div>
+            <div class="whisker-container">
+                <div class="whisker"></div>
+                <div class="whisker"></div>
+            </div>
+        </div>
+        <div class="tail-container">
+            <div class="tail">
+                <div class="tail">
+                    <div class="tail">
+                        <div class="tail">
+                            <div class="tail">
+                                <div class="tail">
+                                    <div class="tail"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div><!-- Quantity should be the same in Sass-->
+<div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+</div><script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/lib/pjax/jquery.pjax.min.js"></script>
+  <script type="text/javascript" src="/lib/nprogress/nprogress.min.js"></script>
+  <script type="text/javascript" src="/js/src/even.js?v=2.11.0"></script>
+</body>
+</html>

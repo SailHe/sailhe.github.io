@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head><meta name="generator" content="Hexo 3.8.0"><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+<meta name="theme-color" content="#f8f5ec">
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+<meta name="description" content="使用ES6, 实际上是混用ES5和ES6"><meta name="keywords" content="program,life"><link rel="alternate" href="/atom.xml" title="SailHe's Cyber Memory(Core)"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.11.0">
+<link rel="canonical" href="https://sailhe.github.io/2019/06/02/ECMAScript规范及其相关技术/">
+
+<link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css"><link rel="stylesheet" type="text/css" href="/lib/nprogress/nprogress.min.css">
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.11.0">
+
+<script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+<script>
+  window.config = {"leancloud":{"app_id":null,"app_key":null},"toc":true,"fancybox":true,"pjax":true,"latex":false};
+</script>
+
+    <title>ECMAScript规范及其相关技术 - SailHe's Cyber Memory(Core)</title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">SailHe's Cyber Memory(Core)</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list"><a href="/">
+        <li class="mobile-menu-item">首页
+          </li>
+      </a><a href="/archives/">
+        <li class="mobile-menu-item">归档
+          </li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签
+          </li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类
+          </li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">关于
+          </li>
+      </a></ul>
+</nav>
+<div class="container background-transparent" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">SailHe's Cyber Memory(Core)</a>
+</div>
+
+<nav class="site-navbar"><ul id="menu" class="menu"><li class="menu-item">
+          <a class="menu-item-link" href="/">
+            首页
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            归档
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/tags/">
+            标签
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/categories/">
+            分类
+            </a>
+        </li>
+      <li class="menu-item">
+          <a class="menu-item-link" href="/about/">
+            关于
+            </a>
+        </li>
+      </ul></nav>
+</header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper transform-shadow">
+          <div id="content" class="content"><article class="post">
+    <header class="post-header">
+      <h1 class="post-title">ECMAScript规范及其相关技术
+        </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2019-06-02
+        </span><span class="post-category">
+            <a href="/categories/Experience/">Experience</a>
+            </span>
+        </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#前言"><span class="toc-text">前言</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#CommonJS-Node-js"><span class="toc-text">CommonJS Node.js</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#区分"><span class="toc-text">区分</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实操"><span class="toc-text">实操</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Babel"><span class="toc-text">Babel</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#结语"><span class="toc-text">结语</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#关于跨平台"><span class="toc-text">关于跨平台</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#其他"><span class="toc-text">其他</span></a></li></ol></li></ol>
+    </div>
+  </div><div class="post-content"><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><blockquote>
+<p><a href="https://zh.wikipedia.org/zh-cn/ES6" target="_blank" rel="noopener">ES6</a>:<br> ECMAScript 2015（ES2015），第 6 版，最早被称作是 ECMAScript 6（ES6），添加了类和模块的语法，其他特性包括迭代器，Python风格的生成器和生成器表达式，箭头函数，二进制数据，静态类型数组，集合（maps，sets 和 weak maps），promise，reflection 和 proxies。作为最早的 ECMAScript Harmony 版本，也被叫做ES6 Harmony。 </p>
+</blockquote>
+<blockquote>
+<p>在知道了ES6仍未实现之后，我始终暗示自己存在一种方法，使得可以避免使用ES5<br> 然后不停地寻找，最后发现这并不能实现，必须需要一个index之类的文件用于启动，而它必须只能是ES5的<br> 当然，它可以只有几条语句: 导入主方法，运行主方法，这之后只需要在主方法中使用ES6即可<br> 而ES6本身<strong>主要</strong>只是强化了类这一概念而已，然后就是模块的导入方法不同，当前的模块导入并非是官方实现的</p>
+</blockquote>
+<h2 id="CommonJS-Node-js"><a href="#CommonJS-Node-js" class="headerlink" title="CommonJS Node.js"></a><a href="www.commonjs.org/">CommonJS</a> Node.js</h2><p>如果是看过相关代码的话, 极有可能被这几个概念弄昏头, 此处直观地区分一下:</p>
+<blockquote>
+<ul>
+<li>const, let 是ES5的内容<ul>
+<li><strong>require</strong>是<strong>CommonJS</strong>的内容 <code>这一点下面会详细分析</code></li>
+<li>CommonJS是<strong>Node.js</strong>平台的内容</li>
+<li>Node.js使用chromium的<strong>V8引擎</strong></li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<p><a href="https://www.tuicool.com/articles/nueqi27" target="_blank" rel="noopener">关于AMD,CMD,CommonJS及UMD规范</a><br><a href="https://www.cnblogs.com/imwtr/p/4666181.html" target="_blank" rel="noopener">关于 CommonJS AMD CMD UMD 规范的差异总结</a></p>
+<h2 id="区分"><a href="#区分" class="headerlink" title="区分"></a>区分</h2><p><code>引用原文</code><a href="https://www.zhihu.com/question/56820346" target="_blank" rel="noopener">模块导入 require，import的区别</a></p>
+<blockquote>
+<p>require/exports 出生在野生规范当中，什么叫做野生规范？即这些规范是 JavaScript 社区中的开发者自己草拟的规则，得到了大家的承认或者广泛的应用。比如 CommonJS、AMD、CMD 等等。<br>  import/export 则是名门正派。TC39 制定的新的 ECMAScript 版本，即 ES6（ES2015）中包含进来。<br>  <code>本人注: 不论前边多花哨, require里边以及from后边的引号是必须的, 该字符串实质上是一个路径(绝对/相对)</code><br>  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// require/exports 的用法只有以下三种简单的写法</span></span><br><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>)</span><br><span class="line"></span><br><span class="line">exports.fs = fs</span><br><span class="line"><span class="built_in">module</span>.exports = fs</span><br><span class="line"></span><br><span class="line"><span class="comment">// 而 import/export 的写法就多种多样：import fs from 'fs'</span></span><br><span class="line"><span class="keyword">import</span> &#123;<span class="keyword">default</span> <span class="keyword">as</span> fs&#125; <span class="keyword">from</span> <span class="string">'fs'</span></span><br><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> fs <span class="keyword">from</span> <span class="string">'fs'</span></span><br><span class="line"><span class="keyword">import</span> &#123;readFile&#125; <span class="keyword">from</span> <span class="string">'fs'</span></span><br><span class="line"><span class="keyword">import</span> &#123;readFile <span class="keyword">as</span> read&#125; <span class="keyword">from</span> <span class="string">'fs'</span></span><br><span class="line"><span class="keyword">import</span> fs, &#123;readFile&#125; <span class="keyword">from</span> <span class="string">'fs'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> fs</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> fs</span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">readFile</span></span></span><br><span class="line"><span class="function"><span class="title">export</span> </span>&#123;readFile, read&#125;</span><br><span class="line"><span class="keyword">export</span> * <span class="keyword">from</span> <span class="string">'fs'</span></span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>_</p>
+<ol>
+<li>CommonJS 还是 ES6 Module 输出都可以看成是一个具备多个属性或者方法的对象；</li>
+<li>default 是 ES6 Module 所独有的关键字，export default fs 输出默认的接口对象，import fs from ‘fs’ 可直接导入这个对象；<code>本人注: 一般情况下是需要解构赋值的</code></li>
+<li>ES6 Module 中导入模块的属性或者方法是强绑定的，包括基础类型；而 CommonJS 则是普通的值传递或者引用传递。</li>
+</ol>
+</blockquote>
+<h2 id="实操"><a href="#实操" class="headerlink" title="实操"></a>实操</h2><p><code>ES6</code>Point.js<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">Point</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(x, y) &#123;</span><br><span class="line">    <span class="keyword">this</span>.x = x;</span><br><span class="line">    <span class="keyword">this</span>.y = y;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  toString() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">'('</span> + <span class="keyword">this</span>.x + <span class="string">', '</span> + <span class="keyword">this</span>.y + <span class="string">')'</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>若在ES6中则按照ES6规范正常导入即可<br><code>ES6</code>Line.js<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// import Point from Point; // 同样需要使用解构赋值</span></span><br><span class="line"><span class="comment">// import &#123;Point&#125; from Point; // 引号</span></span><br><span class="line"><span class="comment">// import &#123;Point&#125; from 'Point'; // 编译通过&amp;&amp;运行失败(Cannot find module 'Point') 是基于字符串查找实现的</span></span><br><span class="line"><span class="keyword">import</span> Point <span class="keyword">from</span> <span class="string">'./Point'</span>; <span class="comment">// ok</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">Line</span> </span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>(xO, yO, xT, yT) &#123;</span><br><span class="line">      <span class="keyword">this</span>.origin = <span class="keyword">new</span> Point(xO, yO);</span><br><span class="line">      <span class="keyword">this</span>.target = <span class="keyword">new</span> Point(xT, yT);</span><br><span class="line">    &#125;</span><br><span class="line">  </span><br><span class="line">    toString() &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="string">'('</span> + <span class="keyword">this</span>.origin.toString() + <span class="string">', '</span> + <span class="keyword">this</span>.target.toString() + <span class="string">')'</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>关于上述第2点, 使用 require 导入 ES6 的 export 时 需要<br><code>ES5</code>index.js<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// import Point from /lib/Point; // 此处并不能使用ES6(而且语法还错了)</span></span><br><span class="line"><span class="comment">// const Point = require("./lib/Point"); // 不使用解构赋值是不行的</span></span><br><span class="line"><span class="comment">/* </span></span><br><span class="line"><span class="comment">若使用 export default class ClassName 但仍使用解构赋值的话</span></span><br><span class="line"><span class="comment">则 编译会通过, 但会在首次使用 new ClassName 的地方line[14]提示错误:</span></span><br><span class="line"><span class="comment">  TypeError: ClassName is not a constructor</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">const</span> Point = <span class="built_in">require</span>(<span class="string">"./lib/Point"</span>).default; <span class="comment">// 引用babel编译后的ES5</span></span><br><span class="line"><span class="keyword">const</span> &#123;Line&#125; = <span class="built_in">require</span>(<span class="string">"./lib/Line"</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"hello"</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> po = <span class="keyword">new</span> Point(<span class="number">1</span>, <span class="number">2</span>);</span><br><span class="line"><span class="keyword">let</span> pt = <span class="keyword">new</span> Point(<span class="number">3</span>, <span class="number">4</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(po.toString());</span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">new</span> Line(po.x, po.y, pt.x, pt.y).toString());</span><br></pre></td></tr></table></figure></p>
+<p><code>参考-1</code><a href="https://es6.ruanyifeng.com/#docs/class" target="_blank" rel="noopener">ECMAScript 6 入门</a><br><code>参考-1</code><a href="https://es6.ruanyifeng.com/#docs/module" target="_blank" rel="noopener">Module 的语法</a><br><code>参考</code><a href="https://www.jianshu.com/p/edaf43e9384f" target="_blank" rel="noopener">ES6：export default 和 export 区别</a><br><code>参考</code><a href="https://segmentfault.com/a/1190000010426778" target="_blank" rel="noopener">exports、module.exports和export、export default到底是咋回事</a><br><code>参考, GK: {babel 编译 export default  使用require导入; exports.default require}</code><a href="https://juejin.im/post/5a2e5f0851882575d42f5609" target="_blank" rel="noopener">import、require、export、module.exports 混合使用详解</a></p>
+<h2 id="Babel"><a href="#Babel" class="headerlink" title="Babel"></a><a href="https://www.babeljs.cn/docs/usage" target="_blank" rel="noopener">Babel</a></h2><p><code>参考-1</code><a href="https://es6.ruanyifeng.com/#docs/intro#Babel-%E8%BD%AC%E7%A0%81%E5%99%A8" target="_blank" rel="noopener">Babel-转码器</a></p>
+<blockquote>
+<p>Babel 是一个 JavaScript 编译器<br> Babel 是一个工具链，主要用于将 ECMAScript 2015+ 版本的代码转换为向后兼容的 JavaScript 语法，以便能够运行在当前和旧版本的浏览器或其他环境中。</p>
+<ul>
+<li>编译后的js代码使用严格模式可能是因为编译后的文件的名称可能会造成命名冲突</li>
+</ul>
+</blockquote>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>一句话, ES6并未实现, 是babel编译器将ES6编译为ES5, 所以当下必须使用一个引导, 此引导需使用ES5, 当然它可以引用<strong>编译后的ES5代码</strong></p>
+<blockquote>
+<p>注意, 若前后端都使用js的话极易引起混淆</p>
+<ol>
+<li>基于node.js的后端的js原本就可以导入导出模块, 只是想要使用ES6的话就得使用bable之类的编译器</li>
+<li>{Vue, React, Angular, Backbone} 是<strong>前端框架</strong>, 目前<strong>前端</strong>的主体是 HTML5 和 CSS3, 当然 HTML和CSS只是<strong>最终目标</strong>, 而不是这些框架本身的实现</li>
+<li>{swig} 是 <strong>HTML模板引擎</strong>, JSX 是使用 XML 语法编写 JavaScript 的一种语法糖。并不是HTML模板</li>
+<li>{acss} 是 <strong>CSS模板引擎</strong></li>
+<li>前端框架<strong>一般</strong>包括默认的或允许自定义HTML和CSS的模板引擎, 这就是<strong>误解的源头</strong>, 在啥也不了解的时候, 可能会觉得前端框架就是那些引擎本身, 而框架实质上只是技术的组合</li>
+<li>若想在前端写js的时候向node后端一样导入导出模块, 则需要引入<strong>第三方用于解决依赖的js插件</strong>, 可能还需要遵循一定的语法</li>
+<li><a href="https://zh.wikipedia.org/wiki/React" target="_blank" rel="noopener">React</a>（有时叫React.js或ReactJS）是一个为数据提供渲染为HTML视图的开源<strong>JavaScript 库</strong>。</li>
+<li><a href="https://zh.wikipedia.org/wiki/Vue.js" target="_blank" rel="noopener">Vue</a>Vue.js（/vjuː/，或简称为Vue）是一个用于创建用户界面的开源<strong>JavaScript框架</strong>，也是一个创建单页应用的Web应用框架。AngularJS 是 Vue 早期开发的灵感来源</li>
+<li>在传统的WEB前端中, 工程师需要组合各种<strong>HTML标签</strong>来达到某种效果</li>
+<li>在使用了React后, 这些标签可以组合起来, 形成一个<strong>组件</strong>, 利用HTML本身就可以使用js动态添加的特性, 进行所谓的<strong>渲染</strong>, 因此在 React 中，一切都是 JavaScript。<a href="https://cn.vuejs.org/v2/guide/comparison.html" target="_blank" rel="noopener">前端框架的对比</a></li>
+<li>Weex 是使用流行的 Web 开发体验来开发高性能原生应用的框架。<a href="https://weex.incubator.apache.org/zh/guide/introduction.html#概述" target="_blank" rel="noopener">官网概述</a>如是说 <code>不清楚是否更改+字都认识系列</code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">// 为了更好地适应复杂的项目，Vue支持以.vue为扩展名的文件来定义一个完整组件，用以替代使用Vue.component注册组件的方式。开发者可以使用 Webpack或Browserify等构建工具来打包单文件组件。</span><br><span class="line">Vue.component(&apos;buttonclicked&apos;, &#123;</span><br><span class="line">  props: [</span><br><span class="line">    &apos;initial_count&apos;</span><br><span class="line">  ],</span><br><span class="line">  data() &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      count: 0</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  template: &apos;&lt;button v-on:click=&quot;onclick&quot;&gt;Clicked &#123;&#123; count &#125;&#125; times&lt;/button&gt;&apos;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    onclick() &#123;</span><br><span class="line">      this.count += 1;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  mounted() &#123;</span><br><span class="line">    this.count = this.initial_count;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">import React, &#123; Component &#125; from &apos;react&apos;;</span><br><span class="line">import &#123; render &#125; from &apos;react-dom&apos;;</span><br><span class="line"></span><br><span class="line">class HelloMessage extends Component &#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    return &lt;div&gt;Hello &#123;this.props.name&#125;&lt;/div&gt;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 加载组件到 DOM 元素 mountNode</span><br><span class="line">render(&lt;HelloMessage name=&quot;John&quot; /&gt;, mountNode);</span><br></pre></td></tr></table></figure>
+<ol start="11">
+<li><p><a href="https://zh.wikipedia.org/wiki/Webpack" target="_blank" rel="noopener">Webpack</a> 是一个开源的前端打包工具。<strong>Webpack 提供了前端开发缺乏的模块化开发方式</strong>，将各种静态资源视为模块，并从它生成优化过的代码。<br>以下引用自<a href="https://www.webpackjs.com/concepts/modules/" target="_blank" rel="noopener">原文</a></p>
+<blockquote>
+<p>什么是 webpack 模块<br>对比 Node.js 模块，webpack 模块能够以各种方式表达它们的依赖关系，几个例子如下：<br>ES2015 <code>import</code> 语句<br>CommonJS <code>require()</code> 语句<br>AMD <code>define</code> 和 <code>require</code> 语句<br>css/sass/less 文件中的 @import 语句。<br>样式(<code>url(...)</code>)或 HTML 文件(<code>&lt;img src=...&gt;</code>)中的图片链接(<code>image url</code>)</p>
+</blockquote>
+</li>
+<li><p>也就是说, Webpack整合了包括之前介绍过模块导入方法在内的几乎所有方法, 并且, 为前端开发提供了模块化开发方式, 也就是说Tips[6]提到的第三方插件已经没有存在的必要了</p>
+</li>
+<li>上述所有一切都是为了<strong>解决依赖</strong></li>
+<li>Webpack的原理大概就是分析所有依赖语句, 然后合成到一个文件中</li>
+<li>由于HTML动态的部分也包含在JS里面了, 因此, 传统WEB中每个页面都包含的复杂HTML元素现在几乎就剩只有一个id为’root’的div了, 所有元素都是后期渲染上去的</li>
+<li>Webpack与HTML模板的区别在于 前者是动态添加DOM元素, 类似于在页面引入一个js, js里边添加所有元素; 而后者是基于模板生成HTML, 类似于复用DOM; <strong>这两者都是静态页面</strong>;</li>
+<li><strong>静态页面</strong>表示没有后端, 不是指没有动态(DOM元素的变化)</li>
+<li><strong>动态页面</strong>的页面<strong>可以是</strong>在后端实时生成后返回给前端的</li>
+</ol>
+<p> 以下都依赖于Node.js, 这一基于MIT开源的<strong>跨平台JavaScript运行环境</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">名称</th>
+<th style="text-align:center">主要技术依赖</th>
+<th style="text-align:center">解决的问题</th>
+<th style="text-align:center">类型</th>
+<th style="text-align:center">原作者+开发者</th>
+<th style="text-align:left">语言</th>
+<th>初版</th>
+<th>许可协议</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Webpack</td>
+<td style="text-align:center">Node.js</td>
+<td style="text-align:center">资源加载/模块化-解决依赖</td>
+<td style="text-align:center">前端打包工具</td>
+<td style="text-align:center">Tobias Koppers…</td>
+<td style="text-align:left">JavaScript</td>
+<td>2012年03月</td>
+<td>MIT</td>
+</tr>
+<tr>
+<td style="text-align:center">React</td>
+<td style="text-align:center">Webpac; kJSX</td>
+<td style="text-align:center">跨平台渲染数据为HTML视图</td>
+<td style="text-align:center">前端渲染库</td>
+<td style="text-align:center">Jordan Walke+Facebook+Instagram+社区</td>
+<td style="text-align:left">JavaScript</td>
+<td>2013年03月</td>
+<td>MIT</td>
+</tr>
+<tr>
+<td style="text-align:center">AngularJS</td>
+<td style="text-align:center">Node.js</td>
+<td style="text-align:center">协助单页Web应用程序运行</td>
+<td style="text-align:center">前端库(MVC)</td>
+<td style="text-align:center">Miško Hevery+Adam Abrons+Google+社区</td>
+<td style="text-align:left">TypeScript</td>
+<td>2010年10月</td>
+<td>MIT</td>
+</tr>
+<tr>
+<td style="text-align:center">Weex</td>
+<td style="text-align:center">Webpack; Vue</td>
+<td style="text-align:center">跨平台用户界面开发</td>
+<td style="text-align:center">框架</td>
+<td style="text-align:center">阿里巴巴发起+社区</td>
+<td style="text-align:left">JavaScript</td>
+<td>2016年–月</td>
+<td>Apache</td>
+</tr>
+<tr>
+<td style="text-align:center">Vue</td>
+<td style="text-align:center">Node.js</td>
+<td style="text-align:center">创建用户界面</td>
+<td style="text-align:center">前端/单页Web应用框架</td>
+<td style="text-align:center">Evan You</td>
+<td style="text-align:left">JavaScript</td>
+<td>2014年02月</td>
+<td>MIT</td>
+</tr>
+<tr>
+<td style="text-align:center">Electron</td>
+<td style="text-align:center">Chromium</td>
+<td style="text-align:center">桌面GUI应用程序开发</td>
+<td style="text-align:center">软件框架</td>
+<td style="text-align:center">GitHub</td>
+<td style="text-align:left">多种</td>
+<td>2013年7月</td>
+<td>MIT</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>宏观概念的区别</p>
+<pre><code>- **[库](https://zh.wikipedia.org/wiki/函式庫)**(Library )是用于开发软件的子程序集合。库和可执行文件的区别是，库不是独立程序，他们是向其他程序提供服务的代码。**工具集合**
+- **[框架](https://zh.wikipedia.org/wiki/軟體框架)**(Framework)通常指的是为了实现某个业界标准或完成特定基本任务的**软件组件规范**; 也指为了实现某个软件组件规范时，提供规范所要求之基础功能的软件产品, 此时功能类似于**基础设施**。
+- **[架构](https://zh.wikipedia.org/wiki/软件架构)**(Architecture)是有关**软件整体结构**与**组件**的抽象描述，用于指导大型软件系统各个方面的设计。不是[计算机系统结构](https://zh.wikipedia.org/wiki/计算机系统结构)
+- **[平台](https://zh.wikipedia.org/wiki/系统平台)**是指在计算机里让软件运行的**系统环境**，包括硬件环境和软件环境。是能做的最根本的几件事的集合, 加法-&gt;高数以下(减法可补码, 积分类加, 微分类减),微信-&gt;小程序; 浏览器-&gt;Web应用; JVM-&gt;Java程序
+</code></pre></blockquote>
+<blockquote>
+<p>不恰当的理解:<br><strong>函数</strong>的实现往往依赖于特定的<strong>数据结构</strong> (否则实现起来或比较繁琐)<br><strong>算法</strong>是函数的核心(业务逻辑算..吧)<br><strong>方法</strong>是仅用于操纵数据结构的<strong>内部数据</strong>的函数<br><strong>类</strong>是<strong>封装</strong>了方法的数据结构, 用方法体现<strong>行为</strong>, 用内部数据体现<strong>状态</strong><br>函数的集合 称库<br>库   的组合 称框架, 库之间通过<strong>接口</strong>连接</p>
+</blockquote>
+<p>编程方法学</p>
+<table>
+<thead>
+<tr>
+<th><a href="https://zh.wikipedia.org/wiki/编程范式" target="_blank" rel="noopener">编程范式</a></th>
+<th>将程序视为</th>
+<th>基础</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://zh.wikipedia.org/wiki/面向对象程序设计" target="_blank" rel="noopener">面向对象程序设计</a></td>
+<td>相互作用的对象</td>
+<td>{封装, 多态, 抽象, 继承}</td>
+</tr>
+<tr>
+<td><a href="https://zh.wikipedia.org/wiki/函数式编程" target="_blank" rel="noopener">函数式程序设计</a></td>
+<td>函数计算的序列</td>
+<td>{lambda运算, 闭包}</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>框架与库之间最本质区别在于控制权<br>you call libs (函数调用)<br>frameworks inject you (控制反转后的依赖注入)<br>React+Flux+react-router+react-redux 是 框架</p>
+</blockquote>
+<p><a href="https://zh.wikipedia.org/wiki/Electron" target="_blank" rel="noopener">Electron</a>(原名为Atom Shell) 是GitHub开发的一个开源框架。<br>著名项目</p>
+<ul>
+<li>Github客户端</li>
+<li>Atom</li>
+<li>Visual Studio Code</li>
+<li>MongoDB Compass</li>
+<li><a href="https://zh.wikipedia.org/wiki/Unity_(游戏引擎" target="_blank" rel="noopener">Unity</a>)</li>
+</ul>
+<p>Repository<br><a href="https://github.com/electron/electron" target="_blank" rel="noopener">Electron</a><br><a href="https://github.com/facebook/react" target="_blank" rel="noopener">React</a><br>其它的就看Wiki好了..就不多列举了</p>
+<h2 id="关于跨平台"><a href="#关于跨平台" class="headerlink" title="关于跨平台"></a>关于跨平台</h2><p>正因为Node.js本身是跨平台的, 这俩框架才有跨平台的可能, 但两者间并没有直接联系, Node.js跨平台直接决定了依赖于它的软件能够在不同的平台上构建(指Linux和Win)<br>指跨移动端{Android, iOS}和WEB, 而且是一次编写(只能算减少工作量)</p>
+<ul>
+<li>React Native(RN) 所有东西本就是JS</li>
+<li>Weex是将 .vue ,  .we 文件编译成 JS</li>
+<li><a href="https://zh.wikipedia.org/w/index.php?title=Special:%E6%90%9C%E7%B4%A2&amp;search=Weex&amp;ns0=1" target="_blank" rel="noopener">Weex</a>, apache, MYZ 了解一下</li>
+<li>RN毕竟更成熟(时间上+网评+社区), 之前花了好久才编译出一个基于RN的App: <a href="https://github.com/BoostIO/boostnote-mobile" target="_blank" rel="noopener">BoostNote</a>, 效果却奇差无比, 估计试图开发完全跨平台的程序很难, 另外得提一下, <a href="https://github.com/BoostIO/Boostnote" target="_blank" rel="noopener">BoostNote</a> 好歹是正儿八经的跨平台呀, 不过之前做过测评, 最终没用这个, 个人认为其架构{electron; react}值得借鉴</li>
+<li>某种意义上来说JS本身就是跨平台的(都有浏览器吧), 只是支持程度不同, 所以要搞兼容</li>
+<li>Java也说过一次编写到处运行, 不过它靠的是JVM虚拟机</li>
+</ul>
+<p>组件化：webComponent; polymer; x-tag; react; jQuery-plugin; angular-directive<br>模块化:  webpack; browserify; require.js; sea.js<br>开发效率：MVC(Backbone) &lt; Flux(React) &lt; <a href="https://zh.wikipedia.org/zh-hans/MVVM" target="_blank" rel="noopener">MVVM</a>(Angular.js; vue; ember.js)<br>运行效率：Backbone; React<br>可维护性：Flux; Redux</p>
+<p><a href="https://www.jianshu.com/p/132b6d171647" target="_blank" rel="noopener">webpack 解决的痛点</a><br><a href="https://www.gaoshilei.com/2017/05/26/weex-1/" target="_blank" rel="noopener">Weex从入门到超神（一）</a></p>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p><a href="https://www.cnblogs.com/ziyunfei/p/6038213.html" target="_blank" rel="noopener">用 const 还是用 let？</a></p>
+
+      </div>
+      <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="https://sailhe.github.io">SailHe</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="https://sailhe.github.io/2019/06/02/ECMAScript规范及其相关技术/">https://sailhe.github.io/2019/06/02/ECMAScript规范及其相关技术/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span><a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+      <footer class="post-footer">
+        <div class="post-tags">
+            <a href="/tags/Node-js/">Node.js</a>
+            </div>
+        
+        <nav class="post-nav"><a class="prev" href="/2019/06/09/软件构架、架构和框架的区别/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">软件构架、架构和框架的区别</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    <a class="next" href="/2019/05/31/Javascript-解决_unreachable_code_after_return_statement_警告/">
+        <span class="next-text nav-default">Javascript-解决_unreachable_code_after_return_statement_警告</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    </nav></footer>
+    </article></div><div class="comments" id="comments"></div></div>
+      </main>
+
+      <footer id="footer" class="footer"><div class="social-links"><a href="mailto:shell.sailhe@gmail.com" class="iconfont icon-email" title="email"></a>
+        <a href="https://github.com/sailhe" class="iconfont icon-github" title="github"></a>
+        <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    </div><div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://hexo.io/">Hexo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">&copy;2018 - 2024<span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">SailHe</span>
+  </span>
+</div>
+</footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    <!-- >
+  <div class="adventure-island-container">
+    <div class="clouds">
+        <div class="bg"></div>
+    </div>
+    <div class="mountains">
+        <div class="bg"></div>
+    </div>
+    <div class="trees">
+        <div class="bg"></div>
+    </div>
+    <div class="bushes">
+        <div class="bg"></div>
+    </div>
+    <div class="lawn">
+        <div class="bg"></div>
+    </div>
+    <div class="scroll">
+        <div class="bg"></div>
+    </div>
+</div>
+<div class="cat-main">
+    <span class="stand"></span>
+    <div class="cat">
+        <div class="body"></div>
+        <div class="head">
+            <div class="ear"></div>
+            <div class="ear"></div>
+        </div>
+        <div class="face">
+            <div class="nose"></div>
+            <div class="whisker-container">
+                <div class="whisker"></div>
+                <div class="whisker"></div>
+            </div>
+            <div class="whisker-container">
+                <div class="whisker"></div>
+                <div class="whisker"></div>
+            </div>
+        </div>
+        <div class="tail-container">
+            <div class="tail">
+                <div class="tail">
+                    <div class="tail">
+                        <div class="tail">
+                            <div class="tail">
+                                <div class="tail">
+                                    <div class="tail"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div><!-- Quantity should be the same in Sass-->
+<div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+    <div class="firefly"></div>
+</div><script type="text/javascript" src="/lib/jquery/jquery.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/lib/pjax/jquery.pjax.min.js"></script>
+  <script type="text/javascript" src="/lib/nprogress/nprogress.min.js"></script>
+  <script type="text/javascript" src="/js/src/even.js?v=2.11.0"></script>
+</body>
+</html>
