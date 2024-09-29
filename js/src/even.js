@@ -274,6 +274,4 @@
   var config = window.config;
   var even = new Even(config);
   even.setup();
-
-  fetch('https://store.steampowered.com/app/2617300/_/');
 }(window))
